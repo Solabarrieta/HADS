@@ -16,7 +16,10 @@ namespace Lab2
 
         protected void Button1_Click(object sender, EventArgs e)
         {
+            SendEmail.Class1 mail = new SendEmail.Class1();
+            RandomNumber.Class1 random = new RandomNumber.Class1();
 
+            mail.sendMail(Email.Text, "prueba", random.generateRandom().ToString());
         }
     }
 }
