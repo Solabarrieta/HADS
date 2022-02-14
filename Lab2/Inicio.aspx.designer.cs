@@ -33,6 +33,15 @@ namespace Lab2
         protected global::System.Web.UI.WebControls.TextBox Email;
 
         /// <summary>
+        /// Control EmailRequired.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator EmailRequired;
+
+        /// <summary>
         /// Control Password.
         /// </summary>
         /// <remarks>
@@ -40,6 +49,15 @@ namespace Lab2
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox Password;
+
+        /// <summary>
+        /// Control RequiredPassword.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredPassword;
 
         /// <summary>
         /// Control Button1.
