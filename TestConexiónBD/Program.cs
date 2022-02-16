@@ -12,7 +12,9 @@ namespace TestConexiónBD
         {
             SqlConnect.Conectar bd = new SqlConnect.Conectar();
 
-            Console.WriteLine(bd.confUser("telmoesnaolaa@gmail.com", 12433));
+            Console.WriteLine(bd.confUser("telmoesnaolaa@gmail.com", 871173));
+
+            //Console.WriteLine(bd.getConfNum("telmoesnaolaa@gmail.com"));
 
             Console.ReadLine();
         }

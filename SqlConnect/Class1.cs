@@ -66,13 +66,43 @@ namespace SqlConnect
             cmo.Parameters.AddWithValue("@email", email);
 
             if (Convert.ToInt32(cmo.ExecuteScalar())> 0) {
+                this.cerrarCon();
                 return true;
             }
-
+            this.cerrarCon();
             return false;
         }
 
         public string confUser(string mail, int num) {
+
+            string n = this.getConfNum(mail);
+
+            this.conectar();
+
+            if (n.Equals(num.ToString())) {
+                try
+                {
+                    string comando2 = "UPDATE Usuarios SET confirmado='TRUE' WHERE email=@email";
+
+                    SqlCommand cmo = new SqlCommand(comando2, cnn);
+                    cmo.Parameters.AddWithValue("@email", mail);
+
+                    cmo.ExecuteNonQuery();
+
+                    return "OK";
+                }
+                catch (Exception ex)
+                {
+                    return ex.Message;
+                }
+            }
+            
+            return "Error";
+        }
+      
+
+        public string getConfNum(string mail)
+        {
             this.conectar();
 
             string comando = "select numconfir from Usuarios where email=@email";
@@ -81,26 +111,15 @@ namespace SqlConnect
 
             cmoUser.Parameters.AddWithValue("@email", mail);
 
-            try
-            {
-                SqlDataReader data = cmoUser.ExecuteReader();
+            SqlDataReader data = cmoUser.ExecuteReader();
 
-                string n = data.GetValue(0).ToString();
-
-                if (n.Equals(num.ToString())) {
-                    string comando2 = "UPDATE Usuarios SET confirmado=1 WHERE email=@email";
-
-                    SqlCommand cmo = new SqlCommand(comando2, cnn);
-                    cmoUser.Parameters.AddWithValue("@email", mail);
-
-                    cmoUser.ExecuteNonQuery();
-
-                }
+            while (data.Read()) {
+                return data.GetInt32(0).ToString();
             }
-            catch (Exception ex) {
-                return ex.Message;
-            }
-            return "Error";
+
+            return "";
+
+            this.cerrarCon();
         }
     }
 }
