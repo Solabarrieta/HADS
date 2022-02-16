@@ -9,7 +9,7 @@ namespace InsertUserDB
 {
     public class Insert
     {
-        public string Insertar(string mail, string nombre, string apellidos, int numconfir, bool confirmado, string tipo, string pass) {
+        public string Insertar(string mail, string nombre, string apellidos, int numconfir, string tipo, string pass) {
             try
             {
                 SqlConnect.Conectar cnn = new SqlConnect.Conectar();

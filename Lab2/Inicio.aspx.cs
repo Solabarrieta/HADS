@@ -11,15 +11,26 @@ namespace Lab2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            string alert = Request.QueryString["alert"];
 
+            if (alert != null)
+            {
+                if (alert.Equals("faltaconfirmar"))
+                {
+                    Alerta.Text = "Confirme su correo para completar el registro";
+                }
+            }
+            else {
+                Alerta.Text = "";
+            }
         }
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            SendEmail.Class1 mail = new SendEmail.Class1();
-            RandomNumber.Class1 random = new RandomNumber.Class1();
-
-            mail.sendMail(Email.Text, "prueba", random.generateRandom().ToString());
+            if (Page.IsValid) {
+                
+            }
+            
         }
     }
 }

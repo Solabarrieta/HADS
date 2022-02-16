@@ -79,6 +79,7 @@
     <Content Include="Web.config" />
     <Content Include="Inicio.aspx" />
     <Content Include="Registro.aspx" />
+    <Content Include="Confirmar.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CambiarPassword.aspx.cs">
@@ -103,6 +104,13 @@
     <Compile Include="Registro.aspx.designer.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Confirmar.aspx.cs">
+      <DependentUpon>Confirmar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Confirmar.aspx.designer.cs">
+      <DependentUpon>Confirmar.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -112,6 +120,12 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SqlConnect\SqlConnect.csproj">
+      <Project>{4cf10be6-5c3f-4dfb-95bb-84a076353681}</Project>
+      <Name>SqlConnect</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

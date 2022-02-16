@@ -13,5 +13,45 @@ namespace Lab2
         {
 
         }
+
+        protected void RegisterButton_Click(object sender, EventArgs e)
+        {
+            if (Page.IsValid)
+            {
+                SendEmail.Class1 mail = new SendEmail.Class1();
+                RandomNumber.Class1 random = new RandomNumber.Class1();
+                SqlConnect.Conectar bd = new SqlConnect.Conectar();
+
+                int numconf = random.generateRandom();
+                string email = Email.Text;
+                string nombre = Nombre.Text;
+                string apellidos = Apellidos.Text;
+                string pass = Pass1.Text;
+                string rol = RadioButtonList1.SelectedValue;
+
+                bool select = bd.existUser(email);
+
+                if (select)
+                {
+                    Label1.Text = "Ya existe un usuario registrado con ese correo";
+                }
+                else
+                {
+                    string bdRes = bd.insertUser(email, nombre, apellidos, numconf, rol, pass);
+
+                    Label1.Text = bdRes;
+
+                    if (bdRes.Equals("OK"))
+                    {
+                        string body = "https://localhost:44302/Confirmar.aspx?email="+email+"&numconf="+numconf.ToString();
+
+                        mail.sendMail(Email.Text, "prueba", body);
+                        Response.Redirect("Inicio.aspx?alert=faltaconfirmar");
+                    }
+
+                }
+
+            }
+        }
     }
 }

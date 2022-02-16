@@ -10,9 +10,9 @@ namespace TestConexiónBD
     {
         static void Main(string[] args)
         {
-            InsertUserDB.Insert insert = new InsertUserDB.Insert();
+            SqlConnect.Conectar bd = new SqlConnect.Conectar();
 
-            Console.WriteLine(insert.Insertar("tesnaola001@ikasle.ehu.eus"));
+            Console.WriteLine(bd.confUser("telmoesnaolaa@gmail.com", 12433));
 
             Console.ReadLine();
         }
