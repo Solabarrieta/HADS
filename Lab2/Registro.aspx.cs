@@ -43,7 +43,7 @@ namespace Lab2
 
                     if (bdRes.Equals("OK"))
                     {
-                        string body = "https://localhost:44302/Confirmar.aspx?email="+email+"&numconf="+numconf.ToString();
+                        string body = "http://hads22-05a.azurewebsites.net//Confirmar.aspx?email=" + email+"&numconf="+numconf.ToString();
 
                         mail.sendMail(Email.Text, "prueba", body);
                         Response.Redirect("Inicio.aspx?alert=faltaconfirmar");

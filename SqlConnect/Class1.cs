@@ -22,6 +22,58 @@ namespace SqlConnect
             return cnn;
         }
 
+        public string insertPassCod(string mail, int randNum)
+        {
+
+            this.conectar();
+
+            try
+            {
+                string comando2 = "UPDATE Usuarios SET codpass=@num WHERE email=@email";
+
+                SqlCommand cmo = new SqlCommand(comando2, cnn);
+                cmo.Parameters.AddWithValue("@email", mail);
+                cmo.Parameters.AddWithValue("@num", randNum);
+
+               return cmo.ExecuteNonQuery().ToString();
+
+              
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+            
+        }
+
+        public bool login(string email, string pass)
+        {
+            this.conectar();
+
+            try
+            {
+                string comando2 = "select pass from Usuarios where email=@email";
+
+                SqlCommand cmo = new SqlCommand(comando2, cnn);
+                cmo.Parameters.AddWithValue("@email", email);
+
+
+                SqlDataReader data = cmo.ExecuteReader();
+
+                while (data.Read())
+                {
+                    return pass.Equals(data.GetString(0));
+                }
+                this.cerrarCon();
+
+                return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public void cerrarCon() {
             cnn.Close();       
         }
@@ -51,6 +103,41 @@ namespace SqlConnect
                 return "OK";
             }
             catch (Exception ex) {
+                return ex.Message;
+            }
+        }
+
+        public string cambiarPass(string codigo, string pass)
+        {
+            this.conectar();
+
+            try
+            {
+                string comando2 = "UPDATE Usuarios SET pass=@pass WHERE codpass=@cod";
+
+                SqlCommand cmo = new SqlCommand(comando2, cnn);
+                cmo.Parameters.AddWithValue("@pass", pass);
+                cmo.Parameters.AddWithValue("@cod", codigo);
+
+                string result = cmo.ExecuteNonQuery().ToString();
+
+                if (result.Equals("1")) {
+                    string comando = "UPDATE Usuarios SET codpass=NULL WHERE codpass=@cod";
+
+                    SqlCommand cmo2 = new SqlCommand(comando, cnn);
+                    cmo2.Parameters.AddWithValue("@cod", codigo);
+
+                    string result1 = cmo2.ExecuteNonQuery().ToString();
+
+                    
+                }
+
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
                 return ex.Message;
             }
         }
@@ -89,7 +176,7 @@ namespace SqlConnect
 
                     cmo.ExecuteNonQuery();
 
-                    return "OK";
+                    return "Usuario Confirmado";
                 }
                 catch (Exception ex)
                 {
@@ -116,10 +203,12 @@ namespace SqlConnect
             while (data.Read()) {
                 return data.GetInt32(0).ToString();
             }
-
+            this.cerrarCon();
             return "";
 
-            this.cerrarCon();
+            
         }
+
+
     }
 }

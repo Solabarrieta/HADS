@@ -80,6 +80,7 @@
     <Content Include="Inicio.aspx" />
     <Content Include="Registro.aspx" />
     <Content Include="Confirmar.aspx" />
+    <Content Include="AreaUsuarios.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CambiarPassword.aspx.cs">
@@ -111,9 +112,18 @@
     <Compile Include="Confirmar.aspx.designer.cs">
       <DependentUpon>Confirmar.aspx</DependentUpon>
     </Compile>
+    <Compile Include="AreaUsuarios.aspx.cs">
+      <DependentUpon>AreaUsuarios.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AreaUsuarios.aspx.designer.cs">
+      <DependentUpon>AreaUsuarios.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\hads22-05a - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\hads22-05a - Web Deploy.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

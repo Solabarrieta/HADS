@@ -32,7 +32,6 @@
             <asp:HyperLink ID="registro" runat="server" ClientIDMode="AutoID" NavigateUrl="Registro.aspx">Quiero Registrarme</asp:HyperLink>
             <br />
             <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="CambiarPassword.aspx">Modificar Contraseña</asp:HyperLink>
-            <asp:TextBox ID="Prueba" runat="server"></asp:TextBox>
             <asp:ValidationSummary ID="ValidationSummary1" runat="server" ForeColor="Red" ShowSummary="False" />
         </div>
     </form>

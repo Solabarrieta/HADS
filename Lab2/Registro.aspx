@@ -24,13 +24,13 @@
         </p>
         <p>
             Password&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="Pass1" runat="server"></asp:TextBox>
+            <asp:TextBox ID="Pass1" runat="server" TextMode="Password"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredPass1" runat="server" ControlToValidate="Pass1" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ErrorMessage="Debe tener al menos 6 caracteres" ForeColor="Red" ValidateRequestMode="Enabled" ValidationExpression=".{6,}" ControlToValidate="Pass1"></asp:RegularExpressionValidator>
         </p>
         <p>
             Repetir Psw&nbsp;&nbsp;&nbsp;
-            <asp:TextBox ID="Pass2" runat="server"></asp:TextBox>
+            <asp:TextBox ID="Pass2" runat="server" TextMode="Password"></asp:TextBox>
             <asp:RequiredFieldValidator ID="RequiredPass2" runat="server" ControlToValidate="Pass2" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
             <asp:CompareValidator ID="ComparePass" runat="server" ControlToCompare="Pass1" ControlToValidate="Pass2" ErrorMessage="Las dos contraseñas deben ser iguales" ForeColor="Red"></asp:CompareValidator>
         </p>
@@ -51,6 +51,13 @@
         <p>
             <asp:Label ID="Label1" runat="server"></asp:Label>
         </p>
+        <p>
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Inicio.aspx">Volver a inicio</asp:HyperLink>
+        </p>
+        <p>
+            &nbsp;</p>
+        <p>
+            &nbsp;</p>
     </form>
 </body>
 </html>

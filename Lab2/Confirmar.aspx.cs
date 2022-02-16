@@ -17,6 +17,8 @@ namespace Lab2
             SqlConnect.Conectar bd = new SqlConnect.Conectar();
 
             string correcto = bd.confUser(email, num);
+
+            Alert.Text = correcto;
         }
     }
 }

@@ -28,7 +28,19 @@ namespace Lab2
         protected void Button1_Click(object sender, EventArgs e)
         {
             if (Page.IsValid) {
-                
+                SqlConnect.Conectar bd = new SqlConnect.Conectar();
+
+                bool correcto = bd.login(Email.Text, Password.Text);
+
+                if (correcto)
+                {
+                    Response.Redirect("AreaUsuarios.aspx");
+                }
+
+                else {
+                    Email.Text = "";
+                    Alerta.Text="Usuario/Contraseña Incorrectos";
+                }
             }
             
         }
