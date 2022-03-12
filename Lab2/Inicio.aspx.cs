@@ -34,7 +34,8 @@ namespace Lab2
 
                 if (correcto)
                 {
-                    Response.Redirect("AreaUsuarios.aspx");
+                    Session["correo"] = Email.Text;
+                    Response.Redirect("VerTareasProfesor.aspx");
                 }
 
                 else {

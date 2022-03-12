@@ -81,6 +81,7 @@
     <Content Include="Registro.aspx" />
     <Content Include="Confirmar.aspx" />
     <Content Include="AreaUsuarios.aspx" />
+    <Content Include="VerTareasProfesor.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CambiarPassword.aspx.cs">
@@ -119,6 +120,13 @@
     <Compile Include="AreaUsuarios.aspx.designer.cs">
       <DependentUpon>AreaUsuarios.aspx</DependentUpon>
     </Compile>
+    <Compile Include="VerTareasProfesor.aspx.cs">
+      <DependentUpon>VerTareasProfesor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerTareasProfesor.aspx.designer.cs">
+      <DependentUpon>VerTareasProfesor.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -132,11 +140,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{3912d15e-075e-49ac-83d6-d599d97b2255}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SqlConnect\SqlConnect.csproj">
       <Project>{4cf10be6-5c3f-4dfb-95bb-84a076353681}</Project>
       <Name>SqlConnect</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -12,9 +12,9 @@ namespace SqlConnect
         private SqlConnection cnn;
         public SqlConnection conectar()
         {
-            
-                string connectionString = "Server=tcp:hads2205a.database.windows.net,1433;Initial Catalog=HADS22-05A;Persist Security Info=False;User ID=tesnaola001;Password=AprobarHADS2205;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-                cnn = new SqlConnection(connectionString);
+
+            string connectionString = "Server = tcp:hads2205b.database.windows.net,1433; Initial Catalog=HADS22-05B; Persist Security Info = False; User ID = oier; Password =CrClONHEs25; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;";
+            cnn = new SqlConnection(connectionString);
 
                 cnn.Open();
             
@@ -52,7 +52,7 @@ namespace SqlConnect
 
             try
             {
-                string comando2 = "select pass from Usuarios where email=@email";
+                string comando2 = "select pass from dbo.Usuario where email=@email";
 
                 SqlCommand cmo = new SqlCommand(comando2, cnn);
                 cmo.Parameters.AddWithValue("@email", email);
@@ -208,6 +208,7 @@ namespace SqlConnect
 
             
         }
+
 
 
     }
