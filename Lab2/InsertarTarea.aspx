@@ -13,11 +13,19 @@
             <asp:Label ID="CodigoLbl" runat="server" Text="Codigo"></asp:Label>
 &nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="CodigoText" runat="server"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="MaxCharCod" runat="server" ControlToValidate="CodigoText" ErrorMessage="La descripción debe tener menos de 50 caracteres" ForeColor="#CC0000" ValidationExpression="^([\S\s]{0,50})$"></asp:RegularExpressionValidator>
+            <br />
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:RequiredFieldValidator ID="DescripcionRequired1" runat="server" ControlToValidate="CodigoText" ErrorMessage="Debe rellenar todos los campos" ForeColor="#CC0000"></asp:RequiredFieldValidator>
             <br />
             <br />
             <asp:Label ID="DescripcionLbl" runat="server" Text="Descripción"></asp:Label>
 &nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="DescripcionText" runat="server" Height="38px" OnTextChanged="TextBox2_TextChanged" Width="505px"></asp:TextBox>
+            <asp:RegularExpressionValidator ID="MaxCharDesc" runat="server" ControlToValidate="DescripcionText" ErrorMessage="La descripción debe tener menos de 50 caracteres" ForeColor="#CC0000" ValidationExpression="^([\S\s]{0,50})$"></asp:RegularExpressionValidator>
+            <br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:RequiredFieldValidator ID="DescripcionRequired" runat="server" ControlToValidate="DescripcionText" ErrorMessage="Debe rellenar todos los campos" ForeColor="#CC0000"></asp:RequiredFieldValidator>
             <br />
             <br />
             <asp:Label ID="AsignaturaLbl" runat="server" Text="Asignatura"></asp:Label>
@@ -34,6 +42,7 @@
             <asp:Label ID="HorasEstimadasLbl" runat="server" Text="Horas Estimadas"></asp:Label>
 &nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="HorasText" runat="server" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="DescripcionRequired0" runat="server" ControlToValidate="HorasText" ErrorMessage="Debe rellenar todos los campos" ForeColor="#CC0000"></asp:RequiredFieldValidator>
             <br />
             <br />
             <asp:Label ID="TipoTareaLbl" runat="server" Text="Tipo Tarea"></asp:Label>
@@ -47,6 +56,9 @@
             <br />
             <br />
             <asp:Button ID="AddTareaBtn" runat="server" OnClick="AddTarea_Click" Text="Añadir Tarea" />
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <asp:Label ID="ErrorMsg" runat="server" ForeColor="#CC0000"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
     </form>
 </body>

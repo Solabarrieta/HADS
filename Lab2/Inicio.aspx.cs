@@ -40,7 +40,7 @@ namespace Lab2
                 }else if (correcto=="Alumno")
                 {
                     Session["correo"] = Email.Text;
-                    Response.Redirect("AreaUsuarios.aspx");
+                    Response.Redirect("Alumno.aspx");
                 }
 
                 else {

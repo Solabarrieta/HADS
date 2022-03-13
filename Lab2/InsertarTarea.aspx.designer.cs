@@ -42,6 +42,24 @@ namespace Lab2
         protected global::System.Web.UI.WebControls.TextBox CodigoText;
 
         /// <summary>
+        /// Control MaxCharCod.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator MaxCharCod;
+
+        /// <summary>
+        /// Control DescripcionRequired1.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator DescripcionRequired1;
+
+        /// <summary>
         /// Control DescripcionLbl.
         /// </summary>
         /// <remarks>
@@ -58,6 +76,24 @@ namespace Lab2
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox DescripcionText;
+
+        /// <summary>
+        /// Control MaxCharDesc.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator MaxCharDesc;
+
+        /// <summary>
+        /// Control DescripcionRequired.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator DescripcionRequired;
 
         /// <summary>
         /// Control AsignaturaLbl.
@@ -105,6 +141,15 @@ namespace Lab2
         protected global::System.Web.UI.WebControls.TextBox HorasText;
 
         /// <summary>
+        /// Control DescripcionRequired0.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator DescripcionRequired0;
+
+        /// <summary>
         /// Control TipoTareaLbl.
         /// </summary>
         /// <remarks>
@@ -130,5 +175,14 @@ namespace Lab2
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button AddTareaBtn;
+
+        /// <summary>
+        /// Control ErrorMsg.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ErrorMsg;
     }
 }

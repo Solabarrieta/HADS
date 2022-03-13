@@ -23,13 +23,14 @@ namespace Lab2
         {
             BusinessLogic.Logic bl = new BusinessLogic.Logic();
             Entities.Tarea t = new Entities.Tarea(CodigoText.Text, DescripcionText.Text, AsignaturaDropDown.SelectedValue, Int32.Parse(HorasText.Text), true, TipoTareaDropDown.SelectedValue);
-            if(bl.insertarTarea(t) == "Ok")
+            string estado = bl.insertarTarea(t);
+            if (estado == "Ok")
             {
-                //Poner un mensaje de insertado correctamente
+                ErrorMsg.Text = "Tarea insertada correctamente !";
             }
             else
             {
-                //Poner un mensaje de error
+                ErrorMsg.Text = estado;
             }
         }
     }

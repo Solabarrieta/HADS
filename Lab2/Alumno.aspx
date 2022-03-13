@@ -10,7 +10,10 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            Gestión Web de Tareas-Dedicación Alumnos</div>
+            Gestión Web de Tareas-Dedicación Alumnos<br />
+            <br />
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/VerTareasEstudiante.aspx">Tareas Genéricas</asp:HyperLink>
+        </div>
     </form>
 </body>
 </html>

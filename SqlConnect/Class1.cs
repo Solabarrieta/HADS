@@ -4,12 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace SqlConnect
 {
     public class Conectar
     {
         private SqlConnection cnn;
+        private SqlDataAdapter dataAdapter;
+        private DataSet dataset = new DataSet();
+        private DataTable datatable = new DataTable();
+        SqlDataAdapter dapTarea = new SqlDataAdapter();
+        DataSet dstTarea = new DataSet();
         public SqlConnection conectar()
         {
 
@@ -21,6 +27,8 @@ namespace SqlConnect
             
             return cnn;
         }
+
+        
 
         public string insertPassCod(string mail, int randNum)
         {
@@ -209,19 +217,120 @@ namespace SqlConnect
             
         }
 
-        public string insertarTarea(Entities.Tarea t)
-        {
-            this.conectar();
-            string query = "insert into dbo.TareaGenerica "
 
+        public DataTable verTareasAlumno(string asignatura, string email) {
+            SqlDataAdapter dapTar;
+            DataSet dstTar = new DataSet();
+
+            this.conectar();
+            dapTar = new SqlDataAdapter();
+            dapTar.SelectCommand = new SqlCommand("SELECT DISTINCT TareaGenerica.codigo AS Codigo, TareaGenerica.descripcion AS 'Desc.', hEstimadas AS Horas, tipoTarea AS Tipo FROM [dbo].[TareaGenerica] WHERE(codAsig = @asig) AND NOT EXISTS(SELECT NULL FROM EstudianteTarea WHERE TareaGenerica.codigo = codTarea AND email = @email)", cnn);
+            dapTar.SelectCommand.Parameters.Add("@asig", asignatura);
+            dapTar.SelectCommand.Parameters.Add("@email", email);
+            SqlCommandBuilder comBuild = new SqlCommandBuilder(dapTar);
+            dapTar.Fill(dstTar, "Tareas");
+
+            return dstTar.Tables["Tareas"];
+
+        }
+
+        public DataTable verEstudianteTarea(string v)
+        {
+            
+            this.conectar();
+            
+            dapTarea.SelectCommand = new SqlCommand("SELECT * FROM [dbo].[EstudianteTarea] WHERE email=@email", cnn);
+            dapTarea.SelectCommand.Parameters.Add("@email", v);
+            dapTarea.Fill(dstTarea, "EstudianteTareas");
+            return dstTarea.Tables["EstudianteTareas"];
+        }
+
+
+        public DataTable verAsignaturas(string correo)
+        {
+            dataAdapter = new SqlDataAdapter();
+            datatable = new DataTable();
+            dataset = new DataSet();
+            this.conectar();
             try
             {
+                dataAdapter = new SqlDataAdapter();
+                dataAdapter.SelectCommand = new SqlCommand("SELECT codigoAsig FROM EstudianteGrupo CROSS JOIN GrupoClase WHERE (EstudianteGrupo.email = @email) AND (EstudianteGrupo.grupo = codigo)", cnn);
+                dataAdapter.SelectCommand.Parameters.AddWithValue("@email", correo);
+                dataAdapter.Fill(dataset, "Asig");
+                datatable = dataset.Tables["Asig"];
+                return datatable;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
+        public string insertarTarea(Entities.Tarea t)
+        {
+            datatable = new DataTable();
+            try
+            {
+                this.conectar();
+                dataAdapter = new SqlDataAdapter("select * from TareaGenerica", cnn);
+                SqlCommandBuilder command = new SqlCommandBuilder(dataAdapter);
+                dataAdapter.Fill(dataset, "TareaGenerica");
+                datatable = dataset.Tables["TareaGenerica"];
+                DataRow row = datatable.NewRow();
+                row["codigo"] = t.Codigo;
+                row["descripcion"] = t.Descripcion;
+                row["codAsig"] = t.CodigoAsig;
+                row["hEstimadas"] = t.HEstimadas;
+                row["explotacion"] = t.Explotacion;
+                row["tipoTarea"] = t.TipoTarea;
+                datatable.Rows.Add(row);
+                saveChanges("TareaGenerica");
                 return "Ok";
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 return ex.Message;
             }
         }
 
+        public string saveChanges(String tabla)
+        {
+            try
+            {
+                dataAdapter.Update(dataset, tabla);
+                dataset.AcceptChanges();
+                return "Ok";
+            }
+            catch (Exception ex)
+            {
+
+                return ex.Message;
+            }
+        }
+
+        public DataTable instanciarTarea(Entities.Instancia t)
+        {
+            datatable = new DataTable();
+           
+            
+                this.conectar();
+                dataAdapter = new SqlDataAdapter();
+                dataAdapter.SelectCommand = new SqlCommand("SELECT * FROM [dbo].[EstudianteTarea] WHERE email=@email", cnn);
+                dataAdapter.SelectCommand.Parameters.Add("@email", t.Email);
+                SqlCommandBuilder command = new SqlCommandBuilder(dataAdapter);
+                dataAdapter.Fill(dataset, "EstudianteTarea");
+                datatable = dataset.Tables["EstudianteTarea"];
+                DataRow row = datatable.NewRow();
+                row["email"] = t.Email;
+                row["codTarea"] = t.CodTarea;
+                row["hEstimadas"] = t.HEstimadas;
+                row["hReales"] = t.HReales;
+                datatable.Rows.Add(row);
+                string estado = saveChanges("EstudianteTarea");
+                return datatable;
+            
+
+        }
     }
 }

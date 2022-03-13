@@ -35,14 +35,16 @@
         </div>
         <br />
         <br />
-        <asp:SqlDataSource ID="TareasQuery" runat="server" ConnectionString="<%$ ConnectionStrings:HADS22-05BConnectionString %>" SelectCommand="SELECT codigo, descripcion, codAsig, hEstimadas, explotacion, tipoTarea FROM TareaGenerica WHERE (codAsig = @codAsig)">
+        <asp:SqlDataSource ID="TareasQuery" runat="server" ConnectionString="<%$ ConnectionStrings:HADS22-05BConnectionString %>" SelectCommand="SELECT codigo, descripcion, codAsig, hEstimadas, explotacion, tipoTarea FROM TareaGenerica WHERE (codAsig = @codAsig) " >
             <SelectParameters>
                 <asp:SessionParameter Name="codAsig" SessionField="asignatura" />
             </SelectParameters>
+
         </asp:SqlDataSource>
-        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="codigo" DataSourceID="TareasQuery" ForeColor="#333333" GridLines="None">
+        <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" DataKeyNames="codigo" DataSourceID="TareasQuery" ForeColor="#333333" GridLines="None" AllowSorting="True">
             <AlternatingRowStyle BackColor="White" />
             <Columns>
+                <asp:CommandField ShowEditButton="True" />
                 <asp:BoundField DataField="codigo" HeaderText="codigo" ReadOnly="True" SortExpression="codigo" />
                 <asp:BoundField DataField="descripcion" HeaderText="descripcion" SortExpression="descripcion" />
                 <asp:BoundField DataField="codAsig" HeaderText="codAsig" SortExpression="codAsig" />
