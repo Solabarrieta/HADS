@@ -44,5 +44,15 @@
     <Compile Include="BusinessLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{a469143c-eb4d-4f64-8d12-d5c7a0ec156b}</Project>
+      <Name>Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlConnect\SqlConnect.csproj">
+      <Project>{4cf10be6-5c3f-4dfb-95bb-84a076353681}</Project>
+      <Name>SqlConnect</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -11,7 +11,7 @@ namespace Lab2
 {
 
 
-    public partial class WebForm5
+    public partial class WebForm10
     {
 
         /// <summary>
@@ -24,40 +24,58 @@ namespace Lab2
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control Titulo.
+        /// Control CodigoLbl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Titulo;
+        protected global::System.Web.UI.WebControls.Label CodigoLbl;
 
         /// <summary>
-        /// Control Titulo0.
+        /// Control CodigoText.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Titulo0;
+        protected global::System.Web.UI.WebControls.TextBox CodigoText;
 
         /// <summary>
-        /// Control LogoutBtn.
+        /// Control DescripcionLbl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton LogoutBtn;
+        protected global::System.Web.UI.WebControls.Label DescripcionLbl;
 
         /// <summary>
-        /// Control CodAsignatura.
+        /// Control DescripcionText.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList CodAsignatura;
+        protected global::System.Web.UI.WebControls.TextBox DescripcionText;
+
+        /// <summary>
+        /// Control AsignaturaLbl.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label AsignaturaLbl;
+
+        /// <summary>
+        /// Control AsignaturaDropDown.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList AsignaturaDropDown;
 
         /// <summary>
         /// Control AsignaturaQuery.
@@ -69,30 +87,48 @@ namespace Lab2
         protected global::System.Web.UI.WebControls.SqlDataSource AsignaturaQuery;
 
         /// <summary>
-        /// Control insertarTareaBtn.
+        /// Control HorasEstimadasLbl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button insertarTareaBtn;
+        protected global::System.Web.UI.WebControls.Label HorasEstimadasLbl;
 
         /// <summary>
-        /// Control TareasQuery.
+        /// Control HorasText.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource TareasQuery;
+        protected global::System.Web.UI.WebControls.TextBox HorasText;
 
         /// <summary>
-        /// Control GridView1.
+        /// Control TipoTareaLbl.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Label TipoTareaLbl;
+
+        /// <summary>
+        /// Control TipoTareaDropDown.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList TipoTareaDropDown;
+
+        /// <summary>
+        /// Control AddTareaBtn.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button AddTareaBtn;
     }
 }

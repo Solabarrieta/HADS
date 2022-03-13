@@ -82,6 +82,11 @@
     <Content Include="Confirmar.aspx" />
     <Content Include="AreaUsuarios.aspx" />
     <Content Include="VerTareasProfesor.aspx" />
+    <Content Include="Profesor.aspx" />
+    <Content Include="Alumno.aspx" />
+    <Content Include="VerTareasEstudiante.aspx" />
+    <Content Include="InstanciarTarea.aspx" />
+    <Content Include="InsertarTarea.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CambiarPassword.aspx.cs">
@@ -127,6 +132,41 @@
     <Compile Include="VerTareasProfesor.aspx.designer.cs">
       <DependentUpon>VerTareasProfesor.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Profesor.aspx.cs">
+      <DependentUpon>Profesor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profesor.aspx.designer.cs">
+      <DependentUpon>Profesor.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Alumno.aspx.cs">
+      <DependentUpon>Alumno.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Alumno.aspx.designer.cs">
+      <DependentUpon>Alumno.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="VerTareasEstudiante.aspx.cs">
+      <DependentUpon>VerTareasEstudiante.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="VerTareasEstudiante.aspx.designer.cs">
+      <DependentUpon>VerTareasEstudiante.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InstanciarTarea.aspx.cs">
+      <DependentUpon>InstanciarTarea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InstanciarTarea.aspx.designer.cs">
+      <DependentUpon>InstanciarTarea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="InsertarTarea.aspx.cs">
+      <DependentUpon>InsertarTarea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="InsertarTarea.aspx.designer.cs">
+      <DependentUpon>InsertarTarea.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -143,6 +183,10 @@
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{3912d15e-075e-49ac-83d6-d599d97b2255}</Project>
       <Name>BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Entities\Entities.csproj">
+      <Project>{a469143c-eb4d-4f64-8d12-d5c7a0ec156b}</Project>
+      <Name>Entities</Name>
     </ProjectReference>
     <ProjectReference Include="..\SqlConnect\SqlConnect.csproj">
       <Project>{4cf10be6-5c3f-4dfb-95bb-84a076353681}</Project>

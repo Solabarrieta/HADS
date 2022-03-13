@@ -30,12 +30,17 @@ namespace Lab2
             if (Page.IsValid) {
                 SqlConnect.Conectar bd = new SqlConnect.Conectar();
 
-                bool correcto = bd.login(Email.Text, Password.Text);
+                string correcto = bd.login(Email.Text, Password.Text);
 
-                if (correcto)
+                if (correcto == "Profesor")
                 {
                     Session["correo"] = Email.Text;
                     Response.Redirect("VerTareasProfesor.aspx");
+
+                }else if (correcto=="Alumno")
+                {
+                    Session["correo"] = Email.Text;
+                    Response.Redirect("AreaUsuarios.aspx");
                 }
 
                 else {

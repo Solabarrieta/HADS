@@ -46,31 +46,32 @@ namespace SqlConnect
             
         }
 
-        public bool login(string email, string pass)
+        public string login(string email, string pass)
         {
             this.conectar();
 
             try
             {
-                string comando2 = "select pass from dbo.Usuario where email=@email";
+                string comando2 = "select tipo from dbo.Usuario where email=@email and pass=@pass" ;
 
                 SqlCommand cmo = new SqlCommand(comando2, cnn);
                 cmo.Parameters.AddWithValue("@email", email);
+                cmo.Parameters.AddWithValue("@pass", pass);
 
 
                 SqlDataReader data = cmo.ExecuteReader();
 
                 while (data.Read())
                 {
-                    return pass.Equals(data.GetString(0));
+                    return data.GetString(0);
                 }
                 this.cerrarCon();
 
-                return false;
+                return null;
             }
             catch (Exception ex)
             {
-                return false;
+                return null;
             }
         }
 
@@ -205,11 +206,22 @@ namespace SqlConnect
             }
             this.cerrarCon();
             return "";
-
             
         }
 
+        public string insertarTarea(Entities.Tarea t)
+        {
+            this.conectar();
+            string query = "insert into dbo.TareaGenerica "
 
+            try
+            {
+                return "Ok";
+            }catch(Exception ex)
+            {
+                return ex.Message;
+            }
+        }
 
     }
 }
