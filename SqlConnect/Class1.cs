@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
+using System.Text.RegularExpressions;
 
 namespace SqlConnect
 {
@@ -14,8 +15,8 @@ namespace SqlConnect
         private SqlDataAdapter dataAdapter;
         private DataSet dataset = new DataSet();
         private DataTable datatable = new DataTable();
-        SqlDataAdapter dapTarea = new SqlDataAdapter();
-        DataSet dstTarea = new DataSet();
+        private DataView dataview;
+        private Entities.Message message;
         public SqlConnection conectar()
         {
 
@@ -218,19 +219,28 @@ namespace SqlConnect
         }
 
 
-        public DataTable verTareasAlumno(string asignatura, string email) {
-            SqlDataAdapter dapTar;
-            DataSet dstTar = new DataSet();
+        public Entities.Message verTareasAlumno(string asignatura, string email) {
+            dataAdapter = new SqlDataAdapter();
+            datatable = new DataTable();
 
-            this.conectar();
-            dapTar = new SqlDataAdapter();
-            dapTar.SelectCommand = new SqlCommand("SELECT DISTINCT TareaGenerica.codigo AS Codigo, TareaGenerica.descripcion AS 'Desc.', hEstimadas AS Horas, tipoTarea AS Tipo FROM [dbo].[TareaGenerica] WHERE(codAsig = @asig) AND NOT EXISTS(SELECT NULL FROM EstudianteTarea WHERE TareaGenerica.codigo = codTarea AND email = @email)", cnn);
-            dapTar.SelectCommand.Parameters.Add("@asig", asignatura);
-            dapTar.SelectCommand.Parameters.Add("@email", email);
-            SqlCommandBuilder comBuild = new SqlCommandBuilder(dapTar);
-            dapTar.Fill(dstTar, "Tareas");
-
-            return dstTar.Tables["Tareas"];
+            try
+            {
+                this.conectar();
+                dataAdapter.SelectCommand = new SqlCommand("SELECT DISTINCT TareaGenerica.codigo AS Codigo, TareaGenerica.descripcion AS 'Desc.', hEstimadas AS Horas, tipoTarea AS Tipo FROM [dbo].[TareaGenerica] WHERE(codAsig = @asig) AND NOT EXISTS(SELECT NULL FROM EstudianteTarea WHERE TareaGenerica.codigo = codTarea AND email = @email)", cnn);
+                dataAdapter.SelectCommand.Parameters.AddWithValue("@asig", asignatura);
+                dataAdapter.SelectCommand.Parameters.AddWithValue("@email", email);
+                SqlCommandBuilder commad = new SqlCommandBuilder(dataAdapter);
+                dataAdapter.Fill(dataset, "Tareas");
+                datatable = dataset.Tables["Tareas"];
+                dataview = new DataView(datatable);
+                message = new Entities.Message(dataview, "Ok");
+                return message;
+            }
+            catch(Exception e)
+            {
+                message = new Entities.Message(null, e.Message);
+                return message;
+            }
 
         }
 
@@ -238,11 +248,15 @@ namespace SqlConnect
         {
             
             this.conectar();
-            
-            dapTarea.SelectCommand = new SqlCommand("SELECT * FROM [dbo].[EstudianteTarea] WHERE email=@email", cnn);
-            dapTarea.SelectCommand.Parameters.Add("@email", v);
-            dapTarea.Fill(dstTarea, "EstudianteTareas");
-            return dstTarea.Tables["EstudianteTareas"];
+
+            dataAdapter = new SqlDataAdapter();
+            datatable = new DataTable();
+            dataset = new DataSet();
+
+            dataAdapter.SelectCommand = new SqlCommand("SELECT * FROM [dbo].[EstudianteTarea] WHERE email=@email", cnn);
+            dataAdapter.SelectCommand.Parameters.AddWithValue("@email", v);
+            dataAdapter.Fill(dataset, "EstudianteTareas");
+            return dataset.Tables["EstudianteTareas"];
         }
 
 
@@ -254,11 +268,24 @@ namespace SqlConnect
             this.conectar();
             try
             {
+
                 dataAdapter = new SqlDataAdapter();
-                dataAdapter.SelectCommand = new SqlCommand("SELECT codigoAsig FROM EstudianteGrupo CROSS JOIN GrupoClase WHERE (EstudianteGrupo.email = @email) AND (EstudianteGrupo.grupo = codigo)", cnn);
+                string regExp = @"(^.{1,}@ikasle\.ehu\.es$)";
+                Regex re = new Regex(regExp);
+
+
+                if (re.IsMatch(correo))
+                {
+                    dataAdapter.SelectCommand = new SqlCommand("SELECT codigoAsig FROM EstudianteGrupo CROSS JOIN GrupoClase WHERE (EstudianteGrupo.email = @email) AND (EstudianteGrupo.grupo = GrupoClase.codigo)", cnn);
+                }
+                else
+                {
+                    dataAdapter.SelectCommand = new SqlCommand("SELECT codigoAsig FROM ProfesorGrupo CROSS JOIN GrupoClase WHERE (ProfesorGrupo.email = @email) AND (ProfesorGrupo.codigoGrupo = GrupoClase.codigo)", cnn);
+                }
                 dataAdapter.SelectCommand.Parameters.AddWithValue("@email", correo);
                 dataAdapter.Fill(dataset, "Asig");
                 datatable = dataset.Tables["Asig"];
+
                 return datatable;
             }
             catch (Exception ex)
@@ -309,15 +336,15 @@ namespace SqlConnect
             }
         }
 
-        public DataTable instanciarTarea(Entities.Instancia t)
+        public Entities.Message instanciarTarea(Entities.Instancia t)
         {
             datatable = new DataTable();
-           
-            
+            try
+            {
                 this.conectar();
                 dataAdapter = new SqlDataAdapter();
                 dataAdapter.SelectCommand = new SqlCommand("SELECT * FROM [dbo].[EstudianteTarea] WHERE email=@email", cnn);
-                dataAdapter.SelectCommand.Parameters.Add("@email", t.Email);
+                dataAdapter.SelectCommand.Parameters.AddWithValue("@email", t.Email);
                 SqlCommandBuilder command = new SqlCommandBuilder(dataAdapter);
                 dataAdapter.Fill(dataset, "EstudianteTarea");
                 datatable = dataset.Tables["EstudianteTarea"];
@@ -327,10 +354,16 @@ namespace SqlConnect
                 row["hEstimadas"] = t.HEstimadas;
                 row["hReales"] = t.HReales;
                 datatable.Rows.Add(row);
-                string estado = saveChanges("EstudianteTarea");
-                return datatable;
-            
+                dataview = new DataView(datatable);
 
+                string estado = saveChanges("EstudianteTarea");
+                message = new Entities.Message(dataview,estado);
+                return message;
+            }catch(Exception e)
+            {
+                message = new Entities.Message(null, e.Message);
+                return message;
+            }
         }
     }
 }
