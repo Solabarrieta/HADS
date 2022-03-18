@@ -17,7 +17,7 @@ namespace BusinessLogic
              
         }
 
-        public DataTable verTareasAlumno(string asignatura, string email)
+        public Entities.Message verTareasAlumno(string asignatura, string email)
         {
 
             return sqlc.verTareasAlumno(asignatura, email);
@@ -33,7 +33,7 @@ namespace BusinessLogic
             return sqlc.verEstudianteTarea(v);
         }
 
-        public DataTable instanciarTarea(Entities.Instancia t)
+        public Entities.Message instanciarTarea(Entities.Instancia t)
         {
             return sqlc.instanciarTarea(t);
         }
