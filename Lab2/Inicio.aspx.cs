@@ -35,7 +35,7 @@ namespace Lab2
                 if (correcto == "Profesor")
                 {
                     Session["correo"] = Email.Text;
-                    Response.Redirect("VerTareasProfesor.aspx");
+                    Response.Redirect("Profesor.aspx");
 
                 }else if (correcto=="Alumno")
                 {
