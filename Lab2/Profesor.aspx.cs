@@ -13,5 +13,26 @@ namespace Lab2
         {
 
         }
+
+        protected void VerTareasBtn_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("VerTareasProfesor.aspx");
+        }
+
+        protected void ImportarTareasBtn_Click(Object sender, EventArgs e)
+        {
+            Response.Redirect("ImportarTareaXML.aspx");
+        }
+
+        protected void ExportarTareasBtn_Click(Object sender, EventArgs e)
+        {
+            Response.Redirect("ExportarTareaXML.aspx");
+
+        }
+
+        protected void Prueba_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
