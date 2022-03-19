@@ -9,7 +9,15 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
+        <div aria-atomic="False">
+            <asp:LinkButton ID="VerTareasBtn" runat="server" OnClick="VerTareasBtn_Click">Ver Tareas Genéricas</asp:LinkButton>
+            <br />
+            <br />
+            <asp:LinkButton ID="ImportarTareasBtn" runat="server" OnClick="ImportarTareasBtn_Click">Importar Tareas</asp:LinkButton>
+            <br />
+            <br />
+            <asp:LinkButton ID="ExportarTareasBtn" runat="server" OnClick="ExportarTareasBtn_Click">Exportar Tareas</asp:LinkButton>
+            <br />
         </div>
     </form>
 </body>
