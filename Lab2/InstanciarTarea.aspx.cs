@@ -17,15 +17,15 @@ namespace Lab2
             Tarea.Text = Request["codigo"].ToString();
             horasEst.Text = Request["horas"].ToString();
 
-
-            gridTareas.DataSource=bl.verEstudianteTarea(Session["correo"].ToString());
+            string correo = Session["correo"] as string;
+            gridTareas.DataSource=bl.verEstudianteTarea(correo);
             gridTareas.DataBind();
         }
 
         protected void instanciarTarea_Click(object sender, EventArgs e)
         {
             Entities.Instancia tarea =new Entities.Instancia(Session["correo"].ToString(), Tarea.Text, Int32.Parse(horasEst.Text), Int32.Parse(horasReales.Text));
-            DataTable tblTarea = bl.instanciarTarea(tarea);
+            DataView tblTarea = bl.instanciarTarea(tarea).Dv;
 
             
             gridTareas.DataSource = tblTarea;
