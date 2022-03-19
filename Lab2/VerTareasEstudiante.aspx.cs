@@ -19,29 +19,34 @@ namespace Lab2
         DataTable tblAlum;
         DataTable tblAsig;
         DataRow rowAlum;
+        DataView dataview = new DataView();
         
         
         protected void Page_Load(object sender, EventArgs e)
         {
             BusinessLogic.Logic bl = new BusinessLogic.Logic();
             string correo = Session["correo"] as string;
-
-            if (Page.IsPostBack)
-            {
-                Session["asignatura"] = DropDownList1.SelectedValue;
-                string asig = Session["asignatura"] as string;
-                gridAlum.DataSource = bl.verTareasAlumno(asig, correo);
-                gridAlum.DataBind();
-            }
-            else
+            string asignatura;
+            if (!Page.IsPostBack)
             {
                 DropDownList1.DataSource = bl.verAsignaturas(correo);
                 DropDownList1.DataTextField = "codigoAsig";
                 DropDownList1.DataBind();
                 Session["asignatura"] = DropDownList1.SelectedValue;
-                string asig = Session["asignatura"] as string;
-
-                gridAlum.DataSource = bl.verTareasAlumno(asig, correo);
+                asignatura = Session["asignatura"] as string;
+                dataview = bl.verTareasAlumno(correo).Dv;
+                Session["dv"] = dataview;
+                dataview.RowFilter = "Asignatura='" + asignatura + "'";
+                gridAlum.DataSource = dataview;
+                gridAlum.DataBind();
+            }
+            else
+            {
+                Session["asignatura"] = DropDownList1.SelectedValue;
+                asignatura = Session["asignatura"] as string;
+                dataview = Session["dv"] as DataView;
+                dataview.RowFilter = "Asignatura='" + asignatura + "'";
+                gridAlum.DataSource = dataview;
                 gridAlum.DataBind();
             }
         }
