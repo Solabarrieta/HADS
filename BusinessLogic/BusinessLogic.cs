@@ -28,9 +28,9 @@ namespace BusinessLogic
             return sqlc.verAsignaturas(correo);
         }
 
-        public DataTable verEstudianteTarea(string correo)
+        public DataTable verEstudianteTarea(string v)
         {
-            return sqlc.verEstudianteTarea(correo);
+            return sqlc.verEstudianteTarea(v);
         }
 
         public Entities.Message instanciarTarea(Entities.Instancia t)
