@@ -219,15 +219,14 @@ namespace SqlConnect
         }
 
 
-        public Entities.Message verTareasAlumno(string asignatura, string email) {
+        public Entities.Message verTareasAlumno(string email) {
             dataAdapter = new SqlDataAdapter();
             datatable = new DataTable();
 
             try
             {
                 this.conectar();
-                dataAdapter.SelectCommand = new SqlCommand("SELECT DISTINCT TareaGenerica.codigo AS Codigo, TareaGenerica.descripcion AS 'Desc.', hEstimadas AS Horas, tipoTarea AS Tipo FROM [dbo].[TareaGenerica] WHERE(codAsig = @asig) AND NOT EXISTS(SELECT NULL FROM EstudianteTarea WHERE TareaGenerica.codigo = codTarea AND email = @email)", cnn);
-                dataAdapter.SelectCommand.Parameters.AddWithValue("@asig", asignatura);
+                dataAdapter.SelectCommand = new SqlCommand("select codigo as Codigo, descripcion as Descripcion, codAsig as Asignatura, hEstimadas as Horas, explotacion as Explotacion, tipoTarea as TipoTarea from [dbo].[TareaGenerica] cross join(select codigoAsig from [dbo].[GrupoClase]cross join(select grupo from[dbo].[EstudianteGrupo] where email = @email) as EstGrupo where EstGrupo.grupo = [dbo].[GrupoClase].codigo) as Codigo where Codigo.codigoAsig = [dbo].[TareaGenerica].codAsig and[dbo].[TareaGenerica].explotacion = 'true' and not exists(select * from[dbo].[EstudianteTarea] where[dbo].[TareaGenerica].codigo = [dbo].[EstudianteTarea].codTarea)", cnn);
                 dataAdapter.SelectCommand.Parameters.AddWithValue("@email", email);
                 SqlCommandBuilder commad = new SqlCommandBuilder(dataAdapter);
                 dataAdapter.Fill(dataset, "Tareas");
@@ -244,7 +243,7 @@ namespace SqlConnect
 
         }
 
-        public DataTable verEstudianteTarea(string v)
+        public DataTable verEstudianteTarea(string correo)
         {
             
             this.conectar();
@@ -254,7 +253,7 @@ namespace SqlConnect
             dataset = new DataSet();
 
             dataAdapter.SelectCommand = new SqlCommand("SELECT * FROM [dbo].[EstudianteTarea] WHERE email=@email", cnn);
-            dataAdapter.SelectCommand.Parameters.AddWithValue("@email", v);
+            dataAdapter.SelectCommand.Parameters.AddWithValue("@email", correo);
             dataAdapter.Fill(dataset, "EstudianteTareas");
             return dataset.Tables["EstudianteTareas"];
         }
