@@ -87,6 +87,7 @@
     <Content Include="VerTareasEstudiante.aspx" />
     <Content Include="InstanciarTarea.aspx" />
     <Content Include="InsertarTarea.aspx" />
+    <Content Include="ImportarTareaXML.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CambiarPassword.aspx.cs">
@@ -166,6 +167,13 @@
     </Compile>
     <Compile Include="InsertarTarea.aspx.designer.cs">
       <DependentUpon>InsertarTarea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImportarTareaXML.aspx.cs">
+      <DependentUpon>ImportarTareaXML.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImportarTareaXML.aspx.designer.cs">
+      <DependentUpon>ImportarTareaXML.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
