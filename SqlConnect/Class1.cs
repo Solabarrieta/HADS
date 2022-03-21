@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Text.RegularExpressions;
+using System.Xml;
 
 namespace SqlConnect
 {
@@ -29,7 +30,18 @@ namespace SqlConnect
             return cnn;
         }
 
-        
+        public string importarDocumentoXml(XmlDocument xmlDoc)
+        {
+            try
+            {
+                this.conectar();
+                dataAdapter = new SqlDataAdapter();
+                return "Ok";
+            }catch(Exception e)
+            {
+                return e.Message;
+            }
+        }
 
         public string insertPassCod(string mail, int randNum)
         {

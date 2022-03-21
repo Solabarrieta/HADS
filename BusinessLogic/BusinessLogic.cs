@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Xml;
 
 namespace BusinessLogic
 {
@@ -36,6 +37,11 @@ namespace BusinessLogic
         public Entities.Message instanciarTarea(Entities.Instancia t)
         {
             return sqlc.instanciarTarea(t);
+        }
+
+        public String importarDocumentoXml(XmlDocument xmlDoc)
+        {
+            return sqlc.importarDocumentoXml(xmlDoc);
         }
     }
 }
