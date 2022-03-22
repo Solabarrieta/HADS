@@ -24,14 +24,21 @@ namespace SqlConnect
             string connectionString = "Server = tcp:hads2205b.database.windows.net,1433; Initial Catalog=HADS22-05B; Persist Security Info = False; User ID = oier; Password =CrClONHEs25; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;";
             cnn = new SqlConnection(connectionString);
 
-                cnn.Open();
-            
-            
+            cnn.Open();
+
+
             return cnn;
         }
 
-        public string importarDocumentoXml(XmlDocument xmlDoc, string asignatura)
+
+        /*
+         * Si se importe todo correctamente devuelve una lista con el string Ok.
+         * Si hay asignaturas que no se han insertado devuelve una lista con el código de dichas asignaturas.
+         * Si ocuerre una excepción devuelve una lista con el mensaje de la excepción.
+         */
+        public List<string> importarDocumentoXml(XmlDocument xmlDoc, string asignatura)
         {
+            List<string> resultado = new List<string>();
             try
             {
                 this.conectar();
@@ -42,28 +49,43 @@ namespace SqlConnect
                 datatable = new DataTable();
                 dataAdapter.Fill(dataset, "TareaGenerica");
                 datatable = dataset.Tables["TareaGenerica"];
-                
+
                 XmlNodeList nodeList;
                 nodeList = xmlDoc.GetElementsByTagName("tarea");
 
-                for(int i = 0; i<nodeList.Count; i++)
+
+                for (int i = 0; i < nodeList.Count; i++)
                 {
                     Entities.Tarea tarea = new Entities.Tarea();
-                    DataRow row = datatable.NewRow();
-                    row["codigo"] = nodeList[i].Attributes[0].Value;
-                    row["descripcion"] = nodeList[i].ChildNodes[0].ChildNodes[0].Value;
-                    row["codAsig"] = asignatura;
-                    row["hEstimadas"] = nodeList[i].ChildNodes[1].ChildNodes[0].Value;
-                    row["explotacion"] = nodeList[i].ChildNodes[3].ChildNodes[0].Value;
-                    row["tipoTarea"] = nodeList[i].ChildNodes[2].ChildNodes[0].Value;
-                    datatable.Rows.Add(row);
-                    saveChanges("TareaGenerica");
+                    tarea.Codigo = nodeList[i].Attributes[0].Value;
+                    tarea.Descripcion = nodeList[i].ChildNodes[0].ChildNodes[0].Value;
+                    tarea.CodigoAsig = asignatura;
+                    tarea.HEstimadas = Int32.Parse(nodeList[i].ChildNodes[1].ChildNodes[0].Value);
+                    tarea.Explotacion = bool.Parse(nodeList[i].ChildNodes[3].ChildNodes[0].Value);
+                    tarea.TipoTarea = nodeList[i].ChildNodes[2].ChildNodes[0].Value;
+                    string state = this.insertarTarea(tarea);
+
+                    if (state != "Ok")
+                    {
+                        resultado.Add(state);
+                    }
                 }
 
-                return "Ok";
-            }catch(Exception e)
+                if (resultado.Count != 0)
+                {
+                    return resultado;
+                }
+                else
+                {
+                    resultado.Add("Ok");
+                    return resultado;
+                }
+
+            }
+            catch (Exception e)
             {
-                return e.Message;
+                resultado.Add(e.Message);
+                return resultado;
             }
         }
 
@@ -80,15 +102,15 @@ namespace SqlConnect
                 cmo.Parameters.AddWithValue("@email", mail);
                 cmo.Parameters.AddWithValue("@num", randNum);
 
-               return cmo.ExecuteNonQuery().ToString();
+                return cmo.ExecuteNonQuery().ToString();
 
-              
+
             }
             catch (Exception ex)
             {
                 return ex.Message;
             }
-            
+
         }
 
         public string login(string email, string pass)
@@ -97,7 +119,7 @@ namespace SqlConnect
 
             try
             {
-                string comando2 = "select tipo from dbo.Usuario where email=@email and pass=@pass" ;
+                string comando2 = "select tipo from dbo.Usuario where email=@email and pass=@pass";
 
                 SqlCommand cmo = new SqlCommand(comando2, cnn);
                 cmo.Parameters.AddWithValue("@email", email);
@@ -120,8 +142,9 @@ namespace SqlConnect
             }
         }
 
-        public void cerrarCon() {
-            cnn.Close();       
+        public void cerrarCon()
+        {
+            cnn.Close();
         }
 
         public string insertUser(string mail, string nombre, string apellidos, int numconfir, string tipo, string pass)
@@ -148,7 +171,8 @@ namespace SqlConnect
 
                 return "OK";
             }
-            catch (Exception ex) {
+            catch (Exception ex)
+            {
                 return ex.Message;
             }
         }
@@ -167,7 +191,8 @@ namespace SqlConnect
 
                 string result = cmo.ExecuteNonQuery().ToString();
 
-                if (result.Equals("1")) {
+                if (result.Equals("1"))
+                {
                     string comando = "UPDATE Usuarios SET codpass=NULL WHERE codpass=@cod";
 
                     SqlCommand cmo2 = new SqlCommand(comando, cnn);
@@ -175,7 +200,7 @@ namespace SqlConnect
 
                     string result1 = cmo2.ExecuteNonQuery().ToString();
 
-                    
+
                 }
 
 
@@ -198,7 +223,8 @@ namespace SqlConnect
 
             cmo.Parameters.AddWithValue("@email", email);
 
-            if (Convert.ToInt32(cmo.ExecuteScalar())> 0) {
+            if (Convert.ToInt32(cmo.ExecuteScalar()) > 0)
+            {
                 this.cerrarCon();
                 return true;
             }
@@ -206,13 +232,15 @@ namespace SqlConnect
             return false;
         }
 
-        public string confUser(string mail, int num) {
+        public string confUser(string mail, int num)
+        {
 
             string n = this.getConfNum(mail);
 
             this.conectar();
 
-            if (n.Equals(num.ToString())) {
+            if (n.Equals(num.ToString()))
+            {
                 try
                 {
                     string comando2 = "UPDATE Usuarios SET confirmado='TRUE' WHERE email=@email";
@@ -229,10 +257,10 @@ namespace SqlConnect
                     return ex.Message;
                 }
             }
-            
+
             return "Error";
         }
-      
+
 
         public string getConfNum(string mail)
         {
@@ -246,16 +274,18 @@ namespace SqlConnect
 
             SqlDataReader data = cmoUser.ExecuteReader();
 
-            while (data.Read()) {
+            while (data.Read())
+            {
                 return data.GetInt32(0).ToString();
             }
             this.cerrarCon();
             return "";
-            
+
         }
 
 
-        public Entities.Message verTareasAlumno(string email) {
+        public Entities.Message verTareasAlumno(string email)
+        {
             dataAdapter = new SqlDataAdapter();
             datatable = new DataTable();
 
@@ -271,7 +301,7 @@ namespace SqlConnect
                 message = new Entities.Message(dataview, "Ok");
                 return message;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 message = new Entities.Message(null, e.Message);
                 return message;
@@ -281,7 +311,7 @@ namespace SqlConnect
 
         public DataTable verEstudianteTarea(string correo)
         {
-            
+
             this.conectar();
 
             dataAdapter = new SqlDataAdapter();
@@ -329,6 +359,12 @@ namespace SqlConnect
             }
         }
 
+
+        /*
+         * Si se inserta correctamente devuelve Ok.
+         * Si la asignatura existe devuelve el código de la asignatura.
+         * Si ha habido una excepción devuelve el mensaje de la excepción.
+         */
         public string insertarTarea(Entities.Tarea t)
         {
             datatable = new DataTable();
@@ -346,9 +382,17 @@ namespace SqlConnect
                 row["hEstimadas"] = t.HEstimadas;
                 row["explotacion"] = t.Explotacion;
                 row["tipoTarea"] = t.TipoTarea;
-                datatable.Rows.Add(row);
-                saveChanges("TareaGenerica");
-                return "Ok";
+                DataRow exists = datatable.Rows.Find(t.Codigo);
+                if (exists != null)
+                {
+                    return t.Codigo;
+                }
+                else
+                {
+                    datatable.Rows.Add(row);
+                    saveChanges("TareaGenerica");
+                    return "Ok";
+                }
             }
             catch (Exception ex)
             {
@@ -392,9 +436,10 @@ namespace SqlConnect
                 dataview = new DataView(datatable);
 
                 string estado = saveChanges("EstudianteTarea");
-                message = new Entities.Message(dataview,estado);
+                message = new Entities.Message(dataview, estado);
                 return message;
-            }catch(Exception e)
+            }
+            catch (Exception e)
             {
                 message = new Entities.Message(null, e.Message);
                 return message;
