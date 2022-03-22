@@ -14,7 +14,7 @@ namespace Lab2
         BusinessLogic.Logic bl = new BusinessLogic.Logic();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["correo"] = "vadillo@ehu.es";
+            
         }
 
         protected void ImportarBtn_Click(object sender, EventArgs e)
