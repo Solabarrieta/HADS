@@ -30,12 +30,35 @@ namespace SqlConnect
             return cnn;
         }
 
-        public string importarDocumentoXml(XmlDocument xmlDoc)
+        public string importarDocumentoXml(XmlDocument xmlDoc, string asignatura)
         {
             try
             {
                 this.conectar();
                 dataAdapter = new SqlDataAdapter();
+                dataAdapter.SelectCommand = new SqlCommand("select * from TareaGenerica");
+                dataAdapter.InsertCommand = new SqlCommand("insert into TareaGenercia ()");
+                dataset = new DataSet();
+                datatable = new DataTable();
+                dataAdapter.Fill(dataset, "TareaGenerica");
+                datatable = dataset.Tables["TareaGenerica"];
+                
+                XmlNodeList nodeList;
+                nodeList = xmlDoc.GetElementsByTagName("tarea");
+
+                for(int i = 0; i<nodeList.Count; i++)
+                {
+                    DataRow row = datatable.NewRow();
+                    row["codigo"] = nodeList[i].Attributes[0].Value;
+                    row["descripcion"] = nodeList[i].ChildNodes[0].ChildNodes[0].Value;
+                    row["codAsig"] = asignatura;
+                    row["hEstimadas"] = nodeList[i].ChildNodes[1].ChildNodes[0].Value;
+                    row["explotacion"] = nodeList[i].ChildNodes[3].ChildNodes[0].Value;
+                    row["tipoTarea"] = nodeList[i].ChildNodes[2].ChildNodes[0].Value;
+                    datatable.Rows.Add(row);
+                    saveChanges("TareaGenerica");
+                }
+
                 return "Ok";
             }catch(Exception e)
             {
