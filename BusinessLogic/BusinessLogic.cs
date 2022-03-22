@@ -39,9 +39,9 @@ namespace BusinessLogic
             return sqlc.instanciarTarea(t);
         }
 
-        public String importarDocumentoXml(XmlDocument xmlDoc)
+        public String importarDocumentoXml(XmlDocument xmlDoc, string asignatura)
         {
-            return sqlc.importarDocumentoXml(xmlDoc);
+            return sqlc.importarDocumentoXml(xmlDoc, asignatura);
         }
     }
 }

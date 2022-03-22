@@ -35,9 +35,9 @@ namespace SqlConnect
             try
             {
                 this.conectar();
-                dataAdapter = new SqlDataAdapter();
-                dataAdapter.SelectCommand = new SqlCommand("select * from TareaGenerica");
-                dataAdapter.InsertCommand = new SqlCommand("insert into TareaGenercia ()");
+                dataAdapter = new SqlDataAdapter("select * from TareaGenerica", cnn);
+                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+                commandBuilder.GetInsertCommand();
                 dataset = new DataSet();
                 datatable = new DataTable();
                 dataAdapter.Fill(dataset, "TareaGenerica");
@@ -48,6 +48,7 @@ namespace SqlConnect
 
                 for(int i = 0; i<nodeList.Count; i++)
                 {
+                    Entities.Tarea tarea = new Entities.Tarea();
                     DataRow row = datatable.NewRow();
                     row["codigo"] = nodeList[i].Attributes[0].Value;
                     row["descripcion"] = nodeList[i].ChildNodes[0].ChildNodes[0].Value;
