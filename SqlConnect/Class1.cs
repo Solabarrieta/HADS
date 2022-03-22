@@ -53,7 +53,6 @@ namespace SqlConnect
                 XmlNodeList nodeList;
                 nodeList = xmlDoc.GetElementsByTagName("tarea");
 
-
                 for (int i = 0; i < nodeList.Count; i++)
                 {
                     Entities.Tarea tarea = new Entities.Tarea();
@@ -65,6 +64,7 @@ namespace SqlConnect
                     tarea.TipoTarea = nodeList[i].ChildNodes[2].ChildNodes[0].Value;
                     string state = this.insertarTarea(tarea);
 
+                    //Añade los codigos de las tareas no insertas al resultado.
                     if (state != "Ok")
                     {
                         resultado.Add(state);
@@ -80,7 +80,6 @@ namespace SqlConnect
                     resultado.Add("Ok");
                     return resultado;
                 }
-
             }
             catch (Exception e)
             {
@@ -382,7 +381,7 @@ namespace SqlConnect
                 row["hEstimadas"] = t.HEstimadas;
                 row["explotacion"] = t.Explotacion;
                 row["tipoTarea"] = t.TipoTarea;
-                DataRow exists = datatable.Rows.Find(t.Codigo);
+                DataRow[] exists = datatable.Select("codigo='"+t.Codigo+"'");
                 if (exists != null)
                 {
                     return t.Codigo;
