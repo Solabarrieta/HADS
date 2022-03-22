@@ -25,6 +25,11 @@ namespace Entities
             this.tipoTarea = tipoTarea;
         }
 
+        public Tarea()
+        {
+
+        }
+
         public string Codigo { get => codigo; set => codigo = value; }
         public string Descripcion { get => descripcion; set => descripcion = value; }
         public string CodigoAsig { get => codigoAsig; set => codigoAsig = value; }
