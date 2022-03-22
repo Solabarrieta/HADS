@@ -33,13 +33,13 @@ namespace Lab2
         protected global::System.Web.UI.WebControls.Label SeleccionarTareaLbl;
 
         /// <summary>
-        /// Control DropDownList1.
+        /// Control AsignaturasList.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
+        protected global::System.Web.UI.WebControls.DropDownList AsignaturasList;
 
         /// <summary>
         /// Control AsignaturaQuery.
@@ -51,12 +51,30 @@ namespace Lab2
         protected global::System.Web.UI.WebControls.SqlDataSource AsignaturaQuery;
 
         /// <summary>
-        /// Control Button1.
+        /// Control ImportarBtn.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button ImportarBtn;
+
+        /// <summary>
+        /// Control xmlTable.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Xml xmlTable;
+
+        /// <summary>
+        /// Control ControlMsg.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label ControlMsg;
     }
 }

@@ -14,36 +14,37 @@ namespace Lab2
         BusinessLogic.Logic bl = new BusinessLogic.Logic();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //string asignatura = AsignaturasList
-
+            Session["correo"] = "vadillo@ehu.es";
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void ImportarBtn_Click(object sender, EventArgs e)
         {
-            string localizacionXml = "App_Data/XML/" + AsignaturasList.SelectedValue + ".xml";
+            string asignatura = AsignaturasList.SelectedValue;
+            string localizacionXml = "App_Data/XML/" + asignatura + ".xml";
             string localizacionXsl = "App_Data/XSL/VerTablaTareas.xsl";
-            try
+
+            if (File.Exists(Server.MapPath(localizacionXml)))
             {
                 xmlTable.DocumentSource = Server.MapPath(localizacionXml);
                 xmlTable.TransformSource = Server.MapPath(localizacionXsl);
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(Server.MapPath(localizacionXml));
-                bl.importarDocumentoXml(xmlDoc);
-            }
-            catch(System.IO.FileNotFoundException) 
-            {
-                ControlMsg.Text = "Lo sentimos, la asignatura seleccionada no tiene ningún archivo XML para importar!";
-            }
-
-            /*if (File.Exists(Server.MapPath(localizacionXml)))
-            {
-
+                string state = bl.importarDocumentoXml(xmlDoc, asignatura);
+                
+                if(state == "Ok")
+                {
+                    ControlMsg.Text = "Las tareas se han importado correctamente!";
+                }
+                else
+                {
+                    ControlMsg.Text = "Lo sentimos, ha habido un fallo inesperado!";
+                }
 
             }
             else
             {
-               
-            }*/
+                ControlMsg.Text = "Lo sentimos, la asignatura seleccionada no tiene ningún archivo XML para importar!";
+            }
 
         }
 

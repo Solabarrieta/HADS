@@ -13,7 +13,7 @@
             <asp:Label ID="SeleccionarTareaLbl" runat="server" Text="Seleccionar Asignatura a Importar :"></asp:Label>
             <br />
             <br />
-            <asp:DropDownList ID="DropDownList1" runat="server" DataSourceID="AsignaturaQuery" DataTextField="codigoAsig" DataValueField="codigoAsig">
+            <asp:DropDownList ID="AsignaturasList" runat="server" DataSourceID="AsignaturaQuery" DataTextField="codigoAsig" DataValueField="codigoAsig" OnSelectedIndexChanged="AsignaturasList_SelectedIndexChanged">
             </asp:DropDownList>
         <asp:SqlDataSource ID="AsignaturaQuery" runat="server" ConnectionString="<%$ ConnectionStrings:HADS22-05BConnectionString %>" SelectCommand="SELECT codigoAsig FROM ProfesorGrupo CROSS JOIN GrupoClase WHERE (ProfesorGrupo.email = @email) AND (ProfesorGrupo.codigoGrupo = codigo)">
             <SelectParameters>
@@ -24,7 +24,9 @@
             <br />
             <br />
             <br />
-            <asp:Button ID="Button1" runat="server" Text="Importar (XML)" />
+            <asp:Button ID="ImportarBtn" runat="server" Text="Importar (XML)" OnClick="ImportarBtn_Click" />
+            <asp:Xml ID="xmlTable" runat="server"></asp:Xml>
+            <asp:Label ID="ControlMsg" runat="server" ForeColor="#CC0000"></asp:Label>
             <br />
             <br />
             <br />

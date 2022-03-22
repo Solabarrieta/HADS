@@ -75,6 +75,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\XML\HAS.xml" />
+    <Content Include="App_Data\XML\SEG.xml" />
+    <Content Include="App_Data\XSL\VerTablaTareas.xsl" />
     <Content Include="CambiarPassword.aspx" />
     <Content Include="Web.config" />
     <Content Include="Inicio.aspx" />
@@ -177,6 +180,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="App_Data\XSD\tareas.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\hads22-05a - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\hads22-05a - Web Deploy.pubxml" />
