@@ -24,7 +24,7 @@
             <br />
             <br />
             <br />
-            <asp:Button ID="ImportarBtn" runat="server" Text="Importar (XML)" OnClick="ImportarBtn_Click" />
+            <asp:Button ID="ImportarBtn" runat="server" Text="Importar XML" OnClick="ImportarBtn_Click" />
             <asp:Xml ID="xmlTable" runat="server"></asp:Xml>
             <asp:Label ID="ControlMsg" runat="server" ForeColor="#CC0000"></asp:Label>
             <br />
