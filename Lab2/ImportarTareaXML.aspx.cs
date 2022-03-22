@@ -29,15 +29,28 @@ namespace Lab2
                 xmlTable.TransformSource = Server.MapPath(localizacionXsl);
                 XmlDocument xmlDoc = new XmlDocument();
                 xmlDoc.Load(Server.MapPath(localizacionXml));
-                string state = bl.importarDocumentoXml(xmlDoc, asignatura);
+                List<string> state = bl.importarDocumentoXml(xmlDoc, asignatura);
+                string mensaje = "";
                 
-                if(state == "Ok")
+                if(state[0] == "Ok")
                 {
                     ControlMsg.Text = "Las tareas se han importado correctamente!";
                 }
                 else
                 {
-                    ControlMsg.Text = "Lo sentimos, ha habido un fallo inesperado!";
+                    for(int i = 0; i < state.Count; i++)
+                    {
+                        if(i == state.Count - 1)
+                        {
+                            mensaje = mensaje + " y " + state[i];
+                        }
+                        else
+                        {
+                            mensaje = mensaje + state[i];
+                        }
+
+                    }
+                    ControlMsg.Text = "Lo sentimos, no se han podido importar las siguientes tareas genéricas : " + mensaje;
                 }
 
             }
