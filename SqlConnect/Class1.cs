@@ -30,25 +30,21 @@ namespace SqlConnect
             return cnn;
         }
 
-        public XmlDocument exportarTareas(string asignatura)
+        public DataSet exportarTareas(string asignatura)
         {
             this.conectar();
-            dataAdapter = new SqlDataAdapter("select * from TareaGenerica", cnn);
+            dataAdapter = new SqlDataAdapter();
+            dataAdapter.SelectCommand = new SqlCommand("select * from TareaGenerica where codAsig=@asignatura",cnn);
+            dataAdapter.SelectCommand.Parameters.AddWithValue("@asignatura", asignatura);
             dataset = new DataSet();
             datatable = new DataTable();
-            XmlDocument xmlDoc = new XmlDocument();
             dataAdapter.Fill(dataset, "TareaGenerica");
-            datatable = dataset.Tables[0];
-            //datatable.Rows[0].Field("codigo");
-            XmlDeclaration xmlDeclaration =  xmlDoc.CreateXmlDeclaration("1.0", "UTF-8", "yes");
-            XmlElement root = xmlDoc.DocumentElement;
-            xmlDoc.InsertAfter(xmlDeclaration, root);
-            return xmlDoc;
+            return dataset;
         }
 
 
         /*
-         * Si se importe todo correctamente devuelve una lista con el string Ok.
+         * Si se importa todo correctamente devuelve una lista con el string Ok.
          * Si hay asignaturas que no se han insertado devuelve una lista con el código de dichas asignaturas.
          * Si ocuerre una excepción devuelve una lista con el mensaje de la excepción.
          */
