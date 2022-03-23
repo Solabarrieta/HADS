@@ -30,6 +30,22 @@ namespace SqlConnect
             return cnn;
         }
 
+        public XmlDocument exportarTareas(string asignatura)
+        {
+            this.conectar();
+            dataAdapter = new SqlDataAdapter("select * from TareaGenerica", cnn);
+            dataset = new DataSet();
+            datatable = new DataTable();
+            XmlDocument xmlDoc = new XmlDocument();
+            dataAdapter.Fill(dataset, "TareaGenerica");
+            datatable = dataset.Tables[0];
+            //datatable.Rows[0].Field("codigo");
+            XmlDeclaration xmlDeclaration =  xmlDoc.CreateXmlDeclaration("1.0", "UTF-8", "yes");
+            XmlElement root = xmlDoc.DocumentElement;
+            xmlDoc.InsertAfter(xmlDeclaration, root);
+            return xmlDoc;
+        }
+
 
         /*
          * Si se importe todo correctamente devuelve una lista con el string Ok.
