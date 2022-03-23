@@ -15,24 +15,51 @@ namespace Lab2
         BusinessLogic.Logic bl = new BusinessLogic.Logic();
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["correo"] = "blanco@ehu.es";
+            string asignatura;
+            if (!Page.IsPostBack)
+            {
+                string correo = Session["correo"] as string;
+                AsignaturasList.DataSource = bl.verAsignaturas(correo);
+                AsignaturasList.DataTextField = "codigoAsig";
+                AsignaturasList.DataBind();
+                Session["asignatura"] = AsignaturasList.SelectedValue;
+                asignatura = Session["asignatura"] as string;
+                TareasExportadas.DataSource = bl.getTareasGenericas(asignatura);
+                TareasExportadas.DataBind();
+            }
+            else
+            {
+                Session["asignatura"] = AsignaturasList.SelectedValue;
+                asignatura = Session["asignatura"] as string;
+                TareasExportadas.DataSource = bl.getTareasGenericas(asignatura);
+                TareasExportadas.DataBind();
+            }
         }
 
         protected void ExportarBtn_Click(object sender, EventArgs e)
         {
-                string asignatura = Session["asignatura"] as string;
-                DataSet dataSet = bl.exportarTareas(asignatura);
+            string asignatura = Session["asignatura"] as string;
+            DataSet dataSet = bl.getTareasGenericas(asignatura);
+            if (dataSet != null)
+            {
                 DataTable dataTable = dataSet.Tables[0];
                 TareasExportadas.DataSource = dataTable;
                 TareasExportadas.DataBind();
                 dataSet.Tables[0].Columns["codigo"].ColumnMapping = MappingType.Attribute;
+                dataSet.Namespace = "http://ji.ehu.es/has";
+                dataSet.Prefix= "has";
                 dataSet.WriteXml(Server.MapPath("App_Data/XML/" + asignatura + ".xml"));
+            }
+            else
+            {
+
+            }
+
         }
 
         protected void AsignaturasList_SelectedIndexChanged(object sender, EventArgs e)
-        { 
+        {
             Session["asignatura"] = AsignaturasList.SelectedValue;
-
         }
     }
 }

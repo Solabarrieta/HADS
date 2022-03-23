@@ -30,15 +30,15 @@ namespace SqlConnect
             return cnn;
         }
 
-        public DataSet exportarTareas(string asignatura)
+        public DataSet getTareasGenericas(string asignatura)
         {
             this.conectar();
             dataAdapter = new SqlDataAdapter();
-            dataAdapter.SelectCommand = new SqlCommand("select * from TareaGenerica where codAsig=@asignatura",cnn);
+            dataAdapter.SelectCommand = new SqlCommand("select codigo, descripcion, codAsig as codasig, hEstimadas as hestimadas, explotacion, tipoTarea as tipotarea from TareaGenerica where codAsig=@asignatura", cnn);
             dataAdapter.SelectCommand.Parameters.AddWithValue("@asignatura", asignatura);
-            dataset = new DataSet();
+            dataset = new DataSet("tareas");
             datatable = new DataTable();
-            dataAdapter.Fill(dataset, "TareaGenerica");
+            dataAdapter.Fill(dataset, "tarea");
             return dataset;
         }
 
@@ -344,7 +344,6 @@ namespace SqlConnect
             this.conectar();
             try
             {
-
                 dataAdapter = new SqlDataAdapter();
                 string regExp = @"(^.{1,}@ikasle\.ehu\.es$)";
                 Regex re = new Regex(regExp);
@@ -393,7 +392,7 @@ namespace SqlConnect
                 row["hEstimadas"] = t.HEstimadas;
                 row["explotacion"] = t.Explotacion;
                 row["tipoTarea"] = t.TipoTarea;
-                DataRow[] exists = datatable.Select("codigo='"+t.Codigo+"'");
+                DataRow[] exists = datatable.Select("codigo='" + t.Codigo + "'");
                 if (exists != null)
                 {
                     return t.Codigo;

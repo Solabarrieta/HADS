@@ -14,7 +14,7 @@ namespace Lab2
         BusinessLogic.Logic bl = new BusinessLogic.Logic();
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         protected void ImportarBtn_Click(object sender, EventArgs e)

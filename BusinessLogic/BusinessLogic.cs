@@ -23,15 +23,14 @@ namespace BusinessLogic
 
             return sqlc.verTareasAlumno(email);
         }
-
         public DataTable verAsignaturas(string correo)
         {
             return sqlc.verAsignaturas(correo);
         }
 
-        public DataSet exportarTareas(string asignatura)
+        public DataSet getTareasGenericas(string asignatura)
         {
-            return sqlc.exportarTareas(asignatura);
+            return sqlc.getTareasGenericas(asignatura);
         }
 
         public DataTable verEstudianteTarea(string v)

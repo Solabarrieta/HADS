@@ -10,14 +10,9 @@
 <body>
     <form id="form1" runat="server">
         <div>
-            <asp:DropDownList ID="AsignaturasList" runat="server" DataSourceID="AsignaturaQuery" DataTextField="codigoAsig" DataValueField="codigoAsig" OnSelectedIndexChanged="AsignaturasList_SelectedIndexChanged">
+            <asp:DropDownList ID="AsignaturasList" runat="server" OnSelectedIndexChanged="AsignaturasList_SelectedIndexChanged" AutoPostBack="True">
             </asp:DropDownList>
             <br />
-        <asp:SqlDataSource ID="AsignaturaQuery" runat="server" ConnectionString="<%$ ConnectionStrings:HADS22-05BConnectionString %>" SelectCommand="SELECT codigoAsig FROM ProfesorGrupo CROSS JOIN GrupoClase WHERE (ProfesorGrupo.email = @email) AND (ProfesorGrupo.codigoGrupo = codigo)">
-            <SelectParameters>
-                <asp:SessionParameter Name="email" SessionField="correo" Type="String" />
-            </SelectParameters>
-        </asp:SqlDataSource>
             <br />
             <asp:Button ID="ExportarBtn" runat="server" Text="Exportar XML" OnClick="ExportarBtn_Click" />
             <br />
