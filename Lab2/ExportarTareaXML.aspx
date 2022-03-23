@@ -22,7 +22,7 @@
             <asp:Button ID="ExportarBtn" runat="server" Text="Exportar XML" OnClick="ExportarBtn_Click" />
             <br />
             <br />
-            <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
+            <asp:GridView ID="TareasExportadas" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None">
                 <AlternatingRowStyle BackColor="White" />
                 <EditRowStyle BackColor="#2461BF" />
                 <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
