@@ -29,6 +29,11 @@ namespace BusinessLogic
             return sqlc.verAsignaturas(correo);
         }
 
+        public XmlDocument exportarTareas(string asignatura)
+        {
+            return sqlc.exportarTareas(asignatura);
+        }
+
         public DataTable verEstudianteTarea(string v)
         {
             return sqlc.verEstudianteTarea(v);
