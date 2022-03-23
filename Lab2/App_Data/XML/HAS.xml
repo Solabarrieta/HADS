@@ -1,15 +1,59 @@
-<?xml version="1.0" standalone="yes" ?>
-<tareas  xmlns:has="http://ji.ehu.es/has">
-  <tarea codigo= "HAS22-Test1">
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <TareaGenerica codigo="HAS20-Lab1">
+    <descripcion>Lab componentes</descripcion>
+    <codAsig>HAS</codAsig>
+    <hEstimadas>6</hEstimadas>
+    <explotacion>true</explotacion>
+    <tipoTarea>Laboratorio</tipoTarea>
+  </TareaGenerica>
+  <TareaGenerica codigo="HAS20-Lab10">
+    <descripcion>Sobre django</descripcion>
+    <codAsig>HAS</codAsig>
+    <hEstimadas>10</hEstimadas>
+    <explotacion>true</explotacion>
+    <tipoTarea>Laboratorio</tipoTarea>
+  </TareaGenerica>
+  <TareaGenerica codigo="HAS20-Lab2">
+    <descripcion>Web Forms</descripcion>
+    <codAsig>HAS</codAsig>
+    <hEstimadas>12</hEstimadas>
+    <explotacion>true</explotacion>
+    <tipoTarea>Laboratorio</tipoTarea>
+  </TareaGenerica>
+  <TareaGenerica codigo="HAS20-Test1">
     <descripcion>Test 1 de la asignatura</descripcion>
-    <hestimadas>1</hestimadas>
-    <tipotarea>Examen</tipotarea>
-	<explotacion>false</explotacion>
-  </tarea>
-  <tarea codigo="HAS22-Lab4">
+    <codAsig>HAS</codAsig>
+    <hEstimadas>3</hEstimadas>
+    <explotacion>false</explotacion>
+    <tipoTarea>examen</tipoTarea>
+  </TareaGenerica>
+  <TareaGenerica codigo="HAS21-LAB4">
+    <descripcion>Lab sobre ADO.NET</descripcion>
+    <codAsig>HAS</codAsig>
+    <hEstimadas>20</hEstimadas>
+    <explotacion>true</explotacion>
+    <tipoTarea>Laboratorio</tipoTarea>
+  </TareaGenerica>
+  <TareaGenerica codigo="HAS22-Lab4">
     <descripcion>Laboratorio sobre XML</descripcion>
-    <hestimadas>12</hestimadas>
-    <tipotarea>Laboratorio</tipotarea>
-	<explotacion>true</explotacion>
-  </tarea>
-</tareas>
+    <codAsig>HAS</codAsig>
+    <hEstimadas>12</hEstimadas>
+    <explotacion>true</explotacion>
+    <tipoTarea>Laboratorio</tipoTarea>
+  </TareaGenerica>
+  <TareaGenerica codigo="HAS22Prueba">
+    <descripcion>pruebaaaaaaaaaa</descripcion>
+    <codAsig>HAS</codAsig>
+    <hEstimadas>12</hEstimadas>
+    <explotacion>true</explotacion>
+    <tipoTarea>Laboratorio</tipoTarea>
+  </TareaGenerica>
+  <TareaGenerica codigo="HAS22-Test1">
+    <descripcion>Test 1 de la asignatura</descripcion>
+    <codAsig>HAS</codAsig>
+    <hEstimadas>1</hEstimadas>
+    <explotacion>false</explotacion>
+    <tipoTarea>Examen</tipoTarea>
+  </TareaGenerica>
+</NewDataSet>

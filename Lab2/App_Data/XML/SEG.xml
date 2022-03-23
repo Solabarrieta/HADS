@@ -1,15 +1,17 @@
 <?xml version="1.0" standalone="yes"?>
-<tareas  xmlns:has="http://ji.ehu.es/has">
-  <tarea codigo="SEG22-Test1">
-    <descripcion>Test 1 de la asignatura</descripcion>
-    <hestimadas>3</hestimadas>
-    <tipotarea>Examen</tipotarea>
-	<explotacion>false</explotacion>
-  </tarea>
-  <tarea codigo="SEG22-Lab1">
+<NewDataSet>
+  <TareaGenerica codigo="SEG20-Test1">
+    <descripcion>Test 12 de la asignatura</descripcion>
+    <codAsig>SEG</codAsig>
+    <hEstimadas>3</hEstimadas>
+    <explotacion>false</explotacion>
+    <tipoTarea>Examen</tipoTarea>
+  </TareaGenerica>
+  <TareaGenerica codigo="SEG20-Trab1">
     <descripcion>Tareas del trabajo 1 de la asignatura</descripcion>
-    <hestimadas>10</hestimadas>
-    <tipotarea>Trabajo</tipotarea>
-	<explotacion>false</explotacion>
-  </tarea>
-</tareas>
+    <codAsig>SEG</codAsig>
+    <hEstimadas>10</hEstimadas>
+    <explotacion>false</explotacion>
+    <tipoTarea>Trabajo</tipoTarea>
+  </TareaGenerica>
+</NewDataSet>
