@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using System.Xml;
+using System.IO;
 
 namespace Lab2
 {
@@ -20,7 +22,8 @@ namespace Lab2
         {
 
             string asignatura = Session["asignatura"] as string;
-            DataSet dataset = bl.exportarTareas(asignatura);
+            XmlDocument xmlDoc = bl.exportarTareas(asignatura);
+            xmlDoc.Save(Server.MapPath("App_Data/XML/" + asignatura + ".xml"));
         }
 
         protected void AsignaturasList_SelectedIndexChanged(object sender, EventArgs e)
