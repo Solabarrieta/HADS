@@ -1,8 +1,6 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="VerTareasProfesor.aspx.cs" Inherits="Lab2.WebForm5" %>
 
-<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 
-<ajaxToolkit:ConfirmButtonExtender ID="InsertarTareaBtn" runat="server" />
 
 <!DOCTYPE html>
 
@@ -11,10 +9,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <style type="text/css">
-        .auto-style1 {
-            width: 124px;
-            margin-left: 640px;
-        }
         .auto-style2 {
             height: 64px;
             width: 567px;
@@ -83,7 +77,6 @@
         </asp:SqlDataSource>
         <br />
             <asp:Button ID="insertarTareaBtn" runat="server" BorderColor="#666666" BorderStyle="Solid" BorderWidth="1px" Height="33px" OnClick="InsertarTareaBtn_Click" Text="Insertar Tarea" />
-        <ajaxToolkit:ConfirmButtonExtender ID="insertarTareaBtn_ConfirmButtonExtender" runat="server" BehaviorID="insertarTareaBtn_ConfirmButtonExtender" ConfirmText="" TargetControlID="insertarTareaBtn" />
     </form>
 </body>
 </html>

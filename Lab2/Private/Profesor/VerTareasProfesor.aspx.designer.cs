@@ -15,14 +15,6 @@ namespace Lab2
     {
 
         /// <summary>
-        /// Control InsertarTareaBtn.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-
-        /// <summary>
         /// Control form1.
         /// </summary>
         /// <remarks>
@@ -120,13 +112,5 @@ namespace Lab2
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button insertarTareaBtn;
-
-        /// <summary>
-        /// Control insertarTareaBtn_ConfirmButtonExtender.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
     }
 }
