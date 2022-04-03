@@ -28,6 +28,7 @@ namespace Lab2
 
         protected void InsertarTareaBtn_Click(object sender, EventArgs e)
         {
+
             Response.Redirect("InsertarTarea.aspx");
         }
     }

@@ -11,7 +11,7 @@ namespace Lab2
 {
 
 
-    public partial class WebForm11
+    public partial class WebForm6
     {
 
         /// <summary>
@@ -24,57 +24,39 @@ namespace Lab2
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// Control SeleccionarTareaLbl.
+        /// Control VerTareasBtn.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label SeleccionarTareaLbl;
+        protected global::System.Web.UI.WebControls.LinkButton VerTareasBtn;
 
         /// <summary>
-        /// Control AsignaturasList.
+        /// Control ImportarTareasBtn.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList AsignaturasList;
+        protected global::System.Web.UI.WebControls.LinkButton ImportarTareasBtn;
 
         /// <summary>
-        /// Control AsignaturaQuery.
+        /// Control ExportarTareasBtn.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource AsignaturaQuery;
+        protected global::System.Web.UI.WebControls.LinkButton ExportarTareasBtn;
 
         /// <summary>
-        /// Control ImportarBtn.
+        /// Control Button1.
         /// </summary>
         /// <remarks>
         /// Campo generado automáticamente.
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button ImportarBtn;
-
-        /// <summary>
-        /// Control xmlTable.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Xml xmlTable;
-
-        /// <summary>
-        /// Control ControlMsg.
-        /// </summary>
-        /// <remarks>
-        /// Campo generado automáticamente.
-        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ControlMsg;
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

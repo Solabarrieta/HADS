@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Text.RegularExpressions;
 using System.Xml;
+using Entities;
 
 namespace SqlConnect
 {
@@ -34,11 +35,23 @@ namespace SqlConnect
         {
             this.conectar();
             dataAdapter = new SqlDataAdapter();
-            dataAdapter.SelectCommand = new SqlCommand("select codigo, descripcion, codAsig as codasig, hEstimadas as hestimadas, explotacion, tipoTarea as tipotarea from TareaGenerica where codAsig=@asignatura", cnn);
+            dataAdapter.SelectCommand = new SqlCommand("select codigo, descripcion, hEstimadas as hestimadas, tipoTarea as tipotarea, explotacion  from TareaGenerica where codAsig=@asignatura", cnn);
             dataAdapter.SelectCommand.Parameters.AddWithValue("@asignatura", asignatura);
             dataset = new DataSet("tareas");
             datatable = new DataTable();
             dataAdapter.Fill(dataset, "tarea");
+            return dataset;
+        }
+
+        public DataSet getUsuarios(string email)
+        {
+            this.conectar();
+            dataAdapter = new SqlDataAdapter();
+            dataAdapter.SelectCommand = new SqlCommand("SELECT email, nombre, apellidos, tipo FROM Usuario WHERE email != @email", cnn);
+            dataAdapter.SelectCommand.Parameters.AddWithValue("@email", email);
+            dataset = new DataSet("usuarios");
+            datatable = new DataTable();
+            dataAdapter.Fill(dataset, "usuarios");
             return dataset;
         }
 
@@ -130,26 +143,34 @@ namespace SqlConnect
 
             try
             {
-                string comando2 = "select tipo from dbo.Usuario where email=@email and pass=@pass";
+                string comando2 = "select tipo, pass from dbo.Usuario where email=@email";
 
                 SqlCommand cmo = new SqlCommand(comando2, cnn);
                 cmo.Parameters.AddWithValue("@email", email);
-                cmo.Parameters.AddWithValue("@pass", pass);
+                
 
 
                 SqlDataReader data = cmo.ExecuteReader();
-
-                while (data.Read())
+                if (data.Read())
                 {
-                    return data.GetString(0);
+                    if (data.GetString(1) == pass)
+                    {
+                        return data.GetString(0);
+                    }
+                    else
+                    {
+                        return "pass";
+                    }
                 }
-                this.cerrarCon();
+                else
+                {
+                    return "user";
+                }
 
-                return null;
             }
             catch (Exception ex)
             {
-                return null;
+                return ex.Message;
             }
         }
 
@@ -158,29 +179,52 @@ namespace SqlConnect
             cnn.Close();
         }
 
-        public string insertUser(string mail, string nombre, string apellidos, int numconfir, string tipo, string pass)
+        public string insertUser(User user)
         {
             try
             {
                 this.conectar();
 
-                string comando = "insert into Usuarios (email, nombre, apellidos, numconfir, confirmado, tipo, pass) values (@mail, @nombre, @apellidos, @numconf, @confirmado, @tipo, @pass)";
+                string comando = "insert into Usuario (email, nombre, apellidos, numconfir, confirmado, tipo, pass, codpass) values (@mail, @nombre, @apellidos, @numconf, @confirmado, @tipo, @pass, @codpass)";
 
                 SqlCommand cmo = new SqlCommand(comando, cnn);
 
-                cmo.Parameters.AddWithValue("@mail", mail);
-                cmo.Parameters.AddWithValue("@nombre", nombre);
-                cmo.Parameters.AddWithValue("@apellidos", apellidos);
-                cmo.Parameters.AddWithValue("@numconf", numconfir);
+                cmo.Parameters.AddWithValue("@mail", user.Email);
+                cmo.Parameters.AddWithValue("@nombre", user.Name);
+                cmo.Parameters.AddWithValue("@apellidos", user.LastName);
+                cmo.Parameters.AddWithValue("@numconf", user.Numconf);
                 cmo.Parameters.AddWithValue("@confirmado", false);
-                cmo.Parameters.AddWithValue("@tipo", tipo);
-                cmo.Parameters.AddWithValue("@pass", pass);
+                cmo.Parameters.AddWithValue("@tipo", user.Rol);
+                cmo.Parameters.AddWithValue("@pass", user.Pass);
+                cmo.Parameters.AddWithValue("@codpass", user.Codpass);
 
                 int numregs = cmo.ExecuteNonQuery();
 
                 cerrarCon();
 
-                return "OK";
+                return "Ok";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        public string eliminarCuenta(string email)
+        {
+            this.conectar();
+
+            try
+            {
+                string comando2 = "DELETE FROM Usuario WHERE email = @email";
+
+                SqlCommand cmo = new SqlCommand(comando2, cnn);
+                cmo.Parameters.AddWithValue("@email", email);
+
+                string result = cmo.ExecuteNonQuery().ToString();
+
+                return result;
+
             }
             catch (Exception ex)
             {
@@ -194,7 +238,7 @@ namespace SqlConnect
 
             try
             {
-                string comando2 = "UPDATE Usuarios SET pass=@pass WHERE codpass=@cod";
+                string comando2 = "UPDATE Usuario SET pass=@pass WHERE codpass=@cod";
 
                 SqlCommand cmo = new SqlCommand(comando2, cnn);
                 cmo.Parameters.AddWithValue("@pass", pass);
@@ -228,7 +272,7 @@ namespace SqlConnect
         {
             this.conectar();
 
-            string comando = "select count(*) from Usuarios where email=@email";
+            string comando = "select count(*) from Usuario where email=@email";
 
             SqlCommand cmo = new SqlCommand(comando, cnn);
 
@@ -254,7 +298,7 @@ namespace SqlConnect
             {
                 try
                 {
-                    string comando2 = "UPDATE Usuarios SET confirmado='TRUE' WHERE email=@email";
+                    string comando2 = "UPDATE Usuario SET confirmado='TRUE' WHERE email=@email";
 
                     SqlCommand cmo = new SqlCommand(comando2, cnn);
                     cmo.Parameters.AddWithValue("@email", mail);

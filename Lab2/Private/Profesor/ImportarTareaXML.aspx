@@ -13,13 +13,8 @@
             <asp:Label ID="SeleccionarTareaLbl" runat="server" Text="Seleccionar Asignatura a Importar :"></asp:Label>
             <br />
             <br />
-            <asp:DropDownList ID="AsignaturasList" runat="server" DataSourceID="AsignaturaQuery" DataTextField="codigoAsig" DataValueField="codigoAsig" OnSelectedIndexChanged="AsignaturasList_SelectedIndexChanged">
+            <asp:DropDownList ID="AsignaturasList" runat="server" OnSelectedIndexChanged="AsignaturasList_SelectedIndexChanged" AutoPostBack="True">
             </asp:DropDownList>
-        <asp:SqlDataSource ID="AsignaturaQuery" runat="server" ConnectionString="<%$ ConnectionStrings:HADS22-05BConnectionString %>" SelectCommand="SELECT codigoAsig FROM ProfesorGrupo CROSS JOIN GrupoClase WHERE (ProfesorGrupo.email = @email) AND (ProfesorGrupo.codigoGrupo = codigo)">
-            <SelectParameters>
-                <asp:SessionParameter Name="email" SessionField="correo" Type="String" />
-            </SelectParameters>
-        </asp:SqlDataSource>
             <br />
             <br />
             <br />

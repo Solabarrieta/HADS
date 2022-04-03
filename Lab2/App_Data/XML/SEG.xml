@@ -1,17 +1,15 @@
 <?xml version="1.0" standalone="yes"?>
-<NewDataSet>
-  <TareaGenerica codigo="SEG20-Test1">
+<tareas>
+  <tarea codigo="SEG20-Test1">
     <descripcion>Test 12 de la asignatura</descripcion>
-    <codAsig>SEG</codAsig>
-    <hEstimadas>3</hEstimadas>
+    <hestimadas>3</hestimadas>
+    <tipotarea>Examen</tipotarea>
     <explotacion>false</explotacion>
-    <tipoTarea>Examen</tipoTarea>
-  </TareaGenerica>
-  <TareaGenerica codigo="SEG20-Trab1">
+  </tarea>
+  <tarea codigo="SEG20-Trab1">
     <descripcion>Tareas del trabajo 1 de la asignatura</descripcion>
-    <codAsig>SEG</codAsig>
-    <hEstimadas>10</hEstimadas>
+    <hestimadas>10</hestimadas>
+    <tipotarea>Trabajo</tipotarea>
     <explotacion>false</explotacion>
-    <tipoTarea>Trabajo</tipoTarea>
-  </TareaGenerica>
-</NewDataSet>
+  </tarea>
+</tareas>

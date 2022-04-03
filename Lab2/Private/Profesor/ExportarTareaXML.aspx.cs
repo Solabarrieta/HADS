@@ -16,6 +16,7 @@ namespace Lab2
         protected void Page_Load(object sender, EventArgs e)
         {
             string asignatura;
+            Session["correo"] = "vadillo@ehu.es";
             if (!Page.IsPostBack)
             {
                 string correo = Session["correo"] as string;
@@ -46,9 +47,10 @@ namespace Lab2
                 TareasExportadas.DataSource = dataTable;
                 TareasExportadas.DataBind();
                 dataSet.Tables[0].Columns["codigo"].ColumnMapping = MappingType.Attribute;
-                dataSet.Namespace = "http://ji.ehu.es/has";
-                dataSet.Prefix= "has";
-                dataSet.WriteXml(Server.MapPath("App_Data/XML/" + asignatura + ".xml"));
+                //dataSet.Namespace = "http://ji.ehu.es/has";
+                //dataSet.Prefix= "has";
+                dataSet.WriteXml(Server.MapPath("../../App_Data/XML/" + asignatura + ".xml"));
+                ControlMsg.Text = "El XML se ha exportado correctamente";
             }
             else
             {

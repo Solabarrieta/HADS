@@ -23,6 +23,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -50,6 +51,7 @@
     <Reference Include="SendEmail">
       <HintPath>.\SendEmail.dll</HintPath>
     </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -58,16 +60,14 @@
       <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
@@ -76,51 +76,74 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\XML\HAS.xml" />
-    <Content Include="App_Data\XML\SEG.xml" />
     <Content Include="App_Data\XSL\VerTablaTareas.xsl" />
-    <Content Include="CambiarPassword.aspx" />
+    <Content Include="Private\Admin\Administrador.aspx" />
+    <Content Include="Private\Admin\ConfirmarEliminar.aspx" />
+    <Content Include="Private\Admin\EliminarCuenta.aspx" />
+    <Content Include="Public\CambiarPassword.aspx" />
     <Content Include="Web.config" />
-    <Content Include="Inicio.aspx" />
-    <Content Include="Registro.aspx" />
-    <Content Include="Confirmar.aspx" />
+    <Content Include="Public\Inicio.aspx" />
+    <Content Include="Public\Registro.aspx" />
+    <Content Include="Public\Confirmar.aspx" />
     <Content Include="AreaUsuarios.aspx" />
-    <Content Include="VerTareasProfesor.aspx" />
-    <Content Include="Profesor.aspx" />
-    <Content Include="Alumno.aspx" />
-    <Content Include="VerTareasEstudiante.aspx" />
-    <Content Include="InstanciarTarea.aspx" />
-    <Content Include="InsertarTarea.aspx" />
-    <Content Include="ImportarTareaXML.aspx" />
-    <Content Include="ExportarTareaXML.aspx" />
+    <Content Include="Private\Profesor\VerTareasProfesor.aspx" />
+    <Content Include="Private\Profesor\Profesor.aspx" />
+    <Content Include="Private\Alumno\Alumno.aspx" />
+    <Content Include="Private\Alumno\VerTareasEstudiante.aspx" />
+    <Content Include="Private\Alumno\InstanciarTarea.aspx" />
+    <Content Include="Private\Profesor\InsertarTarea.aspx" />
+    <Content Include="Private\Profesor\ImportarTareaXML.aspx" />
+    <Content Include="Private\Profesor\ExportarTareaXML.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CambiarPassword.aspx.cs">
+    <Compile Include="Private\Admin\Administrador.aspx.cs">
+      <DependentUpon>Administrador.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\Admin\Administrador.aspx.designer.cs">
+      <DependentUpon>Administrador.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\Admin\ConfirmarEliminar.aspx.cs">
+      <DependentUpon>ConfirmarEliminar.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\Admin\ConfirmarEliminar.aspx.designer.cs">
+      <DependentUpon>ConfirmarEliminar.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\Admin\EliminarCuenta.aspx.cs">
+      <DependentUpon>EliminarCuenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\Admin\EliminarCuenta.aspx.designer.cs">
+      <DependentUpon>EliminarCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Public\CambiarPassword.aspx.cs">
       <DependentUpon>CambiarPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="CambiarPassword.aspx.designer.cs">
+    <Compile Include="Public\CambiarPassword.aspx.designer.cs">
       <DependentUpon>CambiarPassword.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Inicio.aspx.cs">
+    <Compile Include="Public\Inicio.aspx.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Inicio.aspx.designer.cs">
+    <Compile Include="Public\Inicio.aspx.designer.cs">
       <DependentUpon>Inicio.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Registro.aspx.cs">
+    <Compile Include="Public\Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Registro.aspx.designer.cs">
+    <Compile Include="Public\Registro.aspx.designer.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Confirmar.aspx.cs">
+    <Compile Include="Public\Confirmar.aspx.cs">
       <DependentUpon>Confirmar.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Confirmar.aspx.designer.cs">
+    <Compile Include="Public\Confirmar.aspx.designer.cs">
       <DependentUpon>Confirmar.aspx</DependentUpon>
     </Compile>
     <Compile Include="AreaUsuarios.aspx.cs">
@@ -130,60 +153,60 @@
     <Compile Include="AreaUsuarios.aspx.designer.cs">
       <DependentUpon>AreaUsuarios.aspx</DependentUpon>
     </Compile>
-    <Compile Include="VerTareasProfesor.aspx.cs">
+    <Compile Include="Private\Profesor\VerTareasProfesor.aspx.cs">
       <DependentUpon>VerTareasProfesor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="VerTareasProfesor.aspx.designer.cs">
+    <Compile Include="Private\Profesor\VerTareasProfesor.aspx.designer.cs">
       <DependentUpon>VerTareasProfesor.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Profesor.aspx.cs">
+    <Compile Include="Private\Profesor\Profesor.aspx.cs">
       <DependentUpon>Profesor.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Profesor.aspx.designer.cs">
+    <Compile Include="Private\Profesor\Profesor.aspx.designer.cs">
       <DependentUpon>Profesor.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Alumno.aspx.cs">
+    <Compile Include="Private\Alumno\Alumno.aspx.cs">
       <DependentUpon>Alumno.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Alumno.aspx.designer.cs">
+    <Compile Include="Private\Alumno\Alumno.aspx.designer.cs">
       <DependentUpon>Alumno.aspx</DependentUpon>
     </Compile>
-    <Compile Include="VerTareasEstudiante.aspx.cs">
+    <Compile Include="Private\Alumno\VerTareasEstudiante.aspx.cs">
       <DependentUpon>VerTareasEstudiante.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="VerTareasEstudiante.aspx.designer.cs">
+    <Compile Include="Private\Alumno\VerTareasEstudiante.aspx.designer.cs">
       <DependentUpon>VerTareasEstudiante.aspx</DependentUpon>
     </Compile>
-    <Compile Include="InstanciarTarea.aspx.cs">
+    <Compile Include="Private\Alumno\InstanciarTarea.aspx.cs">
       <DependentUpon>InstanciarTarea.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="InstanciarTarea.aspx.designer.cs">
+    <Compile Include="Private\Alumno\InstanciarTarea.aspx.designer.cs">
       <DependentUpon>InstanciarTarea.aspx</DependentUpon>
     </Compile>
-    <Compile Include="InsertarTarea.aspx.cs">
+    <Compile Include="Private\Profesor\InsertarTarea.aspx.cs">
       <DependentUpon>InsertarTarea.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="InsertarTarea.aspx.designer.cs">
+    <Compile Include="Private\Profesor\InsertarTarea.aspx.designer.cs">
       <DependentUpon>InsertarTarea.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ImportarTareaXML.aspx.cs">
+    <Compile Include="Private\Profesor\ImportarTareaXML.aspx.cs">
       <DependentUpon>ImportarTareaXML.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ImportarTareaXML.aspx.designer.cs">
+    <Compile Include="Private\Profesor\ImportarTareaXML.aspx.designer.cs">
       <DependentUpon>ImportarTareaXML.aspx</DependentUpon>
     </Compile>
-    <Compile Include="ExportarTareaXML.aspx.cs">
+    <Compile Include="Private\Profesor\ExportarTareaXML.aspx.cs">
       <DependentUpon>ExportarTareaXML.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ExportarTareaXML.aspx.designer.cs">
+    <Compile Include="Private\Profesor\ExportarTareaXML.aspx.designer.cs">
       <DependentUpon>ExportarTareaXML.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -205,6 +228,10 @@
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
       <Project>{3912d15e-075e-49ac-83d6-d599d97b2255}</Project>
       <Name>BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Email\Email.csproj">
+      <Project>{13583649-a366-4510-870c-f1f6fb30bcc7}</Project>
+      <Name>Email</Name>
     </ProjectReference>
     <ProjectReference Include="..\Entities\Entities.csproj">
       <Project>{a469143c-eb4d-4f64-8d12-d5c7a0ec156b}</Project>

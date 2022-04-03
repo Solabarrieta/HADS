@@ -13,6 +13,9 @@
             Gestión Web de Tareas-Dedicación Alumnos<br />
             <br />
             <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/VerTareasEstudiante.aspx">Tareas Genéricas</asp:HyperLink>
+            <br />
+            <br />
+            <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Cerrar Sesión" />
         </div>
     </form>
 </body>

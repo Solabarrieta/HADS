@@ -1,0 +1,21 @@
+<?xml version="1.0" standalone="yes"?>
+<tareas>
+  <tarea codigo="EDA20-Ej1">
+    <descripcion>Ejercicio sobre listas ligadas</descripcion>
+    <hestimadas>3</hestimadas>
+    <tipotarea>Ejercicio</tipotarea>
+    <explotacion>true</explotacion>
+  </tarea>
+  <tarea codigo="EDA20-Ex1">
+    <descripcion>examen</descripcion>
+    <hestimadas>12</hestimadas>
+    <tipotarea>Examen</tipotarea>
+    <explotacion>true</explotacion>
+  </tarea>
+  <tarea codigo="EDA20-Ex2">
+    <descripcion>examen</descripcion>
+    <hestimadas>3</hestimadas>
+    <tipotarea>Examen</tipotarea>
+    <explotacion>true</explotacion>
+  </tarea>
+</tareas>

@@ -1,59 +1,51 @@
 <?xml version="1.0" standalone="yes"?>
-<has:tareas xmlns:has="http://ji.ehu.es/has">
-  <tarea codigo="HAS20-Lab1" xmlns="http://ji.ehu.es/has">
+<tareas>
+  <tarea codigo="HAS20-Lab1">
     <descripcion>Lab componentes</descripcion>
-    <codasig>HAS</codasig>
     <hestimadas>6</hestimadas>
-    <explotacion>true</explotacion>
     <tipotarea>Laboratorio</tipotarea>
+    <explotacion>true</explotacion>
   </tarea>
-  <tarea codigo="HAS20-Lab10" xmlns="http://ji.ehu.es/has">
+  <tarea codigo="HAS20-Lab10">
     <descripcion>Sobre django</descripcion>
-    <codasig>HAS</codasig>
     <hestimadas>10</hestimadas>
-    <explotacion>true</explotacion>
     <tipotarea>Laboratorio</tipotarea>
+    <explotacion>true</explotacion>
   </tarea>
-  <tarea codigo="HAS20-Lab2" xmlns="http://ji.ehu.es/has">
+  <tarea codigo="HAS20-Lab2">
     <descripcion>Web Forms</descripcion>
-    <codasig>HAS</codasig>
     <hestimadas>12</hestimadas>
-    <explotacion>true</explotacion>
     <tipotarea>Laboratorio</tipotarea>
+    <explotacion>true</explotacion>
   </tarea>
-  <tarea codigo="HAS20-Test1" xmlns="http://ji.ehu.es/has">
+  <tarea codigo="HAS20-Test1">
     <descripcion>Test 1 de la asignatura</descripcion>
-    <codasig>HAS</codasig>
     <hestimadas>3</hestimadas>
-    <explotacion>false</explotacion>
     <tipotarea>examen</tipotarea>
-  </tarea>
-  <tarea codigo="HAS21-LAB4" xmlns="http://ji.ehu.es/has">
-    <descripcion>Lab sobre ADO.NET</descripcion>
-    <codasig>HAS</codasig>
-    <hestimadas>20</hestimadas>
-    <explotacion>true</explotacion>
-    <tipotarea>Laboratorio</tipotarea>
-  </tarea>
-  <tarea codigo="HAS22-Lab4" xmlns="http://ji.ehu.es/has">
-    <descripcion>Laboratorio sobre XML</descripcion>
-    <codasig>HAS</codasig>
-    <hestimadas>12</hestimadas>
-    <explotacion>true</explotacion>
-    <tipotarea>Laboratorio</tipotarea>
-  </tarea>
-  <tarea codigo="HAS22Prueba" xmlns="http://ji.ehu.es/has">
-    <descripcion>pruebaaaaaaaaaa</descripcion>
-    <codasig>HAS</codasig>
-    <hestimadas>12</hestimadas>
-    <explotacion>true</explotacion>
-    <tipotarea>Laboratorio</tipotarea>
-  </tarea>
-  <tarea codigo="HAS22-Test1" xmlns="http://ji.ehu.es/has">
-    <descripcion>Test 1 de la asignatura</descripcion>
-    <codasig>HAS</codasig>
-    <hestimadas>1</hestimadas>
     <explotacion>false</explotacion>
-    <tipotarea>Examen</tipotarea>
   </tarea>
-</has:tareas>
+  <tarea codigo="HAS21-LAB4">
+    <descripcion>Lab sobre ADO.NET</descripcion>
+    <hestimadas>20</hestimadas>
+    <tipotarea>Laboratorio</tipotarea>
+    <explotacion>true</explotacion>
+  </tarea>
+  <tarea codigo="HAS22-Lab4">
+    <descripcion>Laboratorio sobre XML</descripcion>
+    <hestimadas>12</hestimadas>
+    <tipotarea>Laboratorio</tipotarea>
+    <explotacion>true</explotacion>
+  </tarea>
+  <tarea codigo="HAS22Prueba">
+    <descripcion>pruebaaaaaaaaaa</descripcion>
+    <hestimadas>12</hestimadas>
+    <tipotarea>Laboratorio</tipotarea>
+    <explotacion>true</explotacion>
+  </tarea>
+  <tarea codigo="HAS22-Test1">
+    <descripcion>Test 1 de la asignatura</descripcion>
+    <hestimadas>1</hestimadas>
+    <tipotarea>Examen</tipotarea>
+    <explotacion>false</explotacion>
+  </tarea>
+</tareas>
