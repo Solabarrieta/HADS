@@ -12,7 +12,7 @@
         &nbsp;<asp:Label ID="Alert" runat="server"></asp:Label>
         <br />
         <br />
-        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Inicio.aspx">Volver a la página de inicio</asp:HyperLink>
+        <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Public/Inicio.aspx">Volver a la página de inicio</asp:HyperLink>
     </form>
 </body>
 </html>

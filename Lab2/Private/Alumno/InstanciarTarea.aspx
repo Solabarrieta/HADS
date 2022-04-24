@@ -26,7 +26,7 @@
             <br />
             <br />
             <asp:Button ID="instanciarTarea" runat="server" Height="61px" OnClick="instanciarTarea_Click" Text="Instanciar Tarea" Width="144px" />
-&nbsp;<asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/VerTareasEstudiante.aspx">Página Anterior</asp:HyperLink>
+&nbsp;<asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Private/Alumno/VerTareasEstudiante.aspx">Página Anterior</asp:HyperLink>
             <br />
             <br />
         </div>

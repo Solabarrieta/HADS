@@ -52,6 +52,8 @@
       <HintPath>.\SendEmail.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -77,15 +79,22 @@
   <ItemGroup>
     <Content Include="App_Data\XML\HAS.xml" />
     <Content Include="App_Data\XSL\VerTablaTareas.xsl" />
+    <Content Include="Global.asax" />
     <Content Include="Private\Admin\Administrador.aspx" />
     <Content Include="Private\Admin\ConfirmarEliminar.aspx" />
     <Content Include="Private\Admin\EliminarCuenta.aspx" />
+    <Content Include="Private\Profesor\VerHorasMedias.aspx" />
     <Content Include="Public\CambiarPassword.aspx" />
+    <Content Include="Users.ascx" />
+    <Content Include="Web References\net.azurewebsites.apihads05\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\net.azurewebsites.apihads05\WebService1.disco" />
     <Content Include="Web.config" />
     <Content Include="Public\Inicio.aspx" />
     <Content Include="Public\Registro.aspx" />
     <Content Include="Public\Confirmar.aspx" />
-    <Content Include="AreaUsuarios.aspx" />
     <Content Include="Private\Profesor\VerTareasProfesor.aspx" />
     <Content Include="Private\Profesor\Profesor.aspx" />
     <Content Include="Private\Alumno\Alumno.aspx" />
@@ -96,6 +105,9 @@
     <Content Include="Private\Profesor\ExportarTareaXML.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Private\Admin\Administrador.aspx.cs">
       <DependentUpon>Administrador.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -116,6 +128,18 @@
     </Compile>
     <Compile Include="Private\Admin\EliminarCuenta.aspx.designer.cs">
       <DependentUpon>EliminarCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Private\Profesor\VerHorasMedias.aspx.cs">
+      <DependentUpon>VerHorasMedias.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Private\Profesor\VerHorasMedias.aspx.designer.cs">
+      <DependentUpon>VerHorasMedias.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="Public\CambiarPassword.aspx.cs">
       <DependentUpon>CambiarPassword.aspx</DependentUpon>
@@ -145,13 +169,6 @@
     </Compile>
     <Compile Include="Public\Confirmar.aspx.designer.cs">
       <DependentUpon>Confirmar.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="AreaUsuarios.aspx.cs">
-      <DependentUpon>AreaUsuarios.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="AreaUsuarios.aspx.designer.cs">
-      <DependentUpon>AreaUsuarios.aspx</DependentUpon>
     </Compile>
     <Compile Include="Private\Profesor\VerTareasProfesor.aspx.cs">
       <DependentUpon>VerTareasProfesor.aspx</DependentUpon>
@@ -209,6 +226,23 @@
     <Compile Include="Private\Profesor\ExportarTareaXML.aspx.designer.cs">
       <DependentUpon>ExportarTareaXML.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Users.ascx.cs">
+      <DependentUpon>Users.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Users.ascx.designer.cs">
+      <DependentUpon>Users.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\matriculas\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\net.azurewebsites.apihads05\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App_Data\XSD\tareas.xsd">
@@ -217,6 +251,16 @@
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\hads22-05a - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\hads22-05a - Web Deploy.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\matriculas\comprobarmatricula.wsdl" />
+    <Content Include="Web References\matriculas\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </Content>
+    <None Include="Web References\net.azurewebsites.apihads05\WebService1.wsdl" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -242,7 +286,36 @@
       <Name>SqlConnect</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://ehusw.es/jav/ServiciosWeb/comprobarmatricula.php%3fwsdl">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\matriculas\</RelPath>
+      <UpdateFromURL>http://ehusw.es/jav/ServiciosWeb/comprobarmatricula.php%3fwsdl</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Lab2_matriculas_Matriculas</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="https://apihads05.azurewebsites.net/WebService1.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\net.azurewebsites.apihads05\</RelPath>
+      <UpdateFromURL>https://apihads05.azurewebsites.net/WebService1.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>Lab2_net_azurewebsites_apihads05_WebService1</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -9,10 +9,21 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:TextBox ID="Email" runat="server"></asp:TextBox>
-        <asp:RequiredFieldValidator ID="EmailRequired" runat="server" ControlToValidate="Email" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
-        <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ErrorMessage="Email Incorrecto" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" ControlToValidate="Email"></asp:RegularExpressionValidator>
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
+                </asp:ScriptManager>
+        <asp:Timer ID="Timer1" runat="server" Interval="10000" OnTick="Timer1_Tick">
+        </asp:Timer>
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+            <ContentTemplate>
+                
+                Email&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <asp:TextBox ID="Email" runat="server" OnTextChanged="Email_TextChanged"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="EmailRequired" runat="server" ControlToValidate="Email" ErrorMessage="*" ForeColor="Red"></asp:RequiredFieldValidator>
+                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" ControlToValidate="Email" ErrorMessage="Email Incorrecto" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                &nbsp;<asp:Label ID="Si" runat="server" ForeColor="#00CC00" Text="SÍ" Visible="False"></asp:Label>
+                <asp:Label ID="No" runat="server" ForeColor="Red" Text="NO" Visible="False"></asp:Label>
+            </ContentTemplate>
+        </asp:UpdatePanel>
         <p>
             Nombre&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <asp:TextBox ID="Nombre" runat="server"></asp:TextBox>
@@ -49,10 +60,10 @@
         </p>
         <asp:ValidationSummary ID="ValidationSummary1" runat="server" ShowSummary="False" />
         <p>
-            <asp:Label ID="Label1" runat="server"></asp:Label>
+            <asp:Label ID="Label1" runat="server" ForeColor="#CC0000"></asp:Label>
         </p>
         <p>
-            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Inicio.aspx">Volver a inicio</asp:HyperLink>
+            <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Public/Inicio.aspx">Volver a inicio</asp:HyperLink>
         </p>
         <p>
             &nbsp;</p>
